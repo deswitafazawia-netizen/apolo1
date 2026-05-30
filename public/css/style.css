@@ -1,1133 +1,261 @@
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        .login-container {
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           height: 100vh;
-           background: linear-gradient(135deg, #7FBCBD, #000000);
-        }
-
-        .login-container h2 {
-            margin-bottom: 20px;
-        }
-
-        .login-container form {
-            padding: 10px;
-             background: rgba(255, 255, 255, 0.5); 
-            backdrop-filter: blur(12px);
-            padding: 20px;
-            -webkit-backdrop-filter: blur(12px);
-            width: 350px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.4);
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            margin-top: 20px;
-            text-align: start;
-        }
-
-        .input-group label {
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-
-        .input-group input {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            outline: none;
-        }
-
-        .input-group input:focus {
-            border-color: #434f59;
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background: #434f59;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-login:hover {
-            background: #000000;
-        }
-
-        .footer {
-            margin-top: 15px;
-            font-size: 13px;
-        }
-
-        .footer a {
-            color: #006A4E;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .container{
-            background-color: #e5e5e5;
-            display: flex;
-            height: 100vh;
-        }
-
-        .container-1{
-            display: flex;
-            padding: 0 20px;
-            flex-direction: column;
-        }
-
-        .wrapper {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 100%;
-        }
-
-.chat{
-    background: #870404;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    cursor: pointer;
-    color: white;
-    border: none;
-    font-size: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    z-index: 10001;
-    transition: 0.3s;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-.chat:hover{
-    transform: scale(1.1);
-    background: #ce7d02;
-}
-
-
-.view-chat{
-    display: none;
-    position: fixed;
-    bottom: 95px;
-    right: 25px;
-    width: 320px;
-    height: 420px;
-    background: white;
-    border-radius: 20px;
+.container {
+    height: 100vh;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    z-index: 10000;
 }
 
-.view-chat.show{
-    display: flex;
-    flex-direction: column;
-}
-
-
-.header-chat{
-    background: #7e0a0a;
-    color: white;
-    padding: 12px 15px;
+.navbar-container {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    z-index: 100;
+    background-color: #1a1a1a;
+    padding: 4px 15px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    height: 65px;
+    width: 100%;
+    border-bottom: 2px solid #6e6e6e;
+    overflow: hidden;
 }
 
-.chat-profile{
+.nav-menu {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.chat-profile img{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.chat-info h3{
-    margin: 0;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-
-.content-chat{
-    flex: 1;
-    padding: 15px;
-    overflow-y: auto;
-    background: #f8f9fa;
-}
-
-.message{
-    background: white;
-    padding: 12px;
-    border-radius: 15px;
-    width: fit-content;
-    max-width: 80%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    margin-bottom: 10px;
-}
-
-
-.btn-chat{
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    gap: 10px;
-    background: white;
-    border-top: 1px solid #ddd;
-}
-
-.btn-chat input{
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    outline: none;
-    font-size: 14px;
-}
-
-.btn-chat button{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #750707;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    transition: 0.3s;
-}
- 
-.btn-chat button:hover{
-    background: #008f68;
-}
-        .post-container div {
-            display: flex;
-            align-items: center;
-            background: white;
-            padding: 10px 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .profile-section img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .input-section {
-            flex: 1;
-            margin: 0 15px;
-        }
-
-        .input-section input {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            background: #f0f2f5;
-            border-radius: 20px;
-            outline: none;
-            font-size: 16px;
-        }
-
-        .photo-section {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-            color: #555;
-        }
-
-        .photo-section i {
-            font-size: 20px;
-            color: green;
-        }
-
-        .logo {
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .sidebar {
-            background-color: #808080;
-            width: 250px;
-        }
-
-        .sidebar ul {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            gap: 25px;
-            padding: 20px;
-        }
-
-        .sidebar ul li{
-            list-style: none;
-        }
-
-        .sidebar ul li a{
-            text-decoration: none;
-            color: white;
-        }
-
-        .banner {
-            width: 100%;
-            height: 300px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .banner-text {
-            margin: 20px 20px 0 20px;
-            margin-bottom: 15px; 
-            line-height: 1.6;   
-        }
-
-        .paket-section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;    
-            margin: 40px auto;
-            padding: 10px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-        }
-.gallery{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    padding: 40px;
-}
-
-.paket-card{
-    background: #fff;
-    border-radius: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.paket-card .action{
-    padding: 20px;
-}
-
-.paket-card:hover{
-    transform: translateY(-5px);
-}
-
-/* gambar */
-.paket-card img{
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    display: block;
-}
-
-/* isi card */
-.card-content{
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.card-content h3{
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #1e293b;
-    line-height: 1.4;
-}
-
-/* deskripsi */
-.card-content p{
-    color: #64748b;
-    line-height: 1.8;
-    font-size: 15px;
-    flex: 1;
-    margin-bottom: 20px;
-}
-
-/* harga */
-.price{
-    margin-bottom: 20px;
-}
-
-.price h2{
-    color: orange;
-    font-size: 35px;
-    font-weight: bold;
-}
-
-.paket-card button{
-    width: 100%;
-    background: orange;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.paket-card button:hover{
-    background: darkorange;
-}
-        .footer-bottom {
-            background: #eee;
-            padding: 20px;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .footer-top {
-            display: flex;
-            justify-content: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .contact-btn {
-            background: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            cursor: pointer;
-        }
-
-        .footer-menu {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .footer-menu a {
-            text-decoration: none;
-            color: #555;
-        }
-
-        .footer-menu a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-copy {
-            font-size: 13px;
-            color: #777;
-        }
-
-        .order-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .order-header {
-            font-size: 13px;
-            color: #777;
-            margin-bottom: 10px;
-        }
-
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-left: 4px solid #3498db;
-            padding-left: 15px;
-        }
-
-        .order-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .order-info img {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .order-text h4 {
-            font-size: 15px;
-        }
-
-        .order-text p {
-            font-size: 12px;
-            color: #777;
-        }
-
-        .order-action {
-            text-align: right;
-        }
-
-        .btn {
-            display: block;
-            margin-bottom: 5px;
-            padding: 6px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .btn-track {
-            background: #7ac142;
-            color: white;
-        }
-
-        .btn-detail {
-            background: #ecf0f1;
-        }
-
-        .link {
-            font-size: 12px;
-            color: #3498db;
-            cursor: pointer;
-        }
-
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .card h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            font-size: 22px;
-            font-weight: bold;
-            color: #3498db;
-        }
-
-        .btn-tambah {
-            background: #27ae60;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-
-        .table-pelanggan {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .table-pelanggan th,
-        .table-pelanggan td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
-        }
-
-        .table-pelanggan th {
-            background: #2c3e50;
-            color: white;
-        }
-
-        .edit {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 7px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .hapus {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 7px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .table-photografer {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .table-photografer th,
-        .table-photografer td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
-        }
-
-        .table-photografer th {
-            background: #2c3e50;
-            color: white;
-        }
-
-        .money-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .money-header {
-            font-size: 13px;
-            color: #777;
-            margin-bottom: 10px;
-        }
-
-        .money-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-left: 4px solid #3498db;
-            padding-left: 15px;
-        }
-
-        .money-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .money-info img {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .money-text h4 {
-            font-size: 15px;
-        }
-
-        .money-text p {
-            font-size: 12px;
-            color: #777;
-        }
-
-        .money-action {
-            text-align: right;
-        }
-
-        .table-pesanan {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .table-pesanan th,
-        .table-pesanan td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
-        }
-
-        .table-pesanan th {
-            background: #2c3e50;
-            color: white;
-        }
-
-        .header {
-            background: #0b1320;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 30px;
-            align-items: center;
-        }
-
-        .header .logo {
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        .header .menu span {
-            margin: 0 10px;
-            cursor: pointer;
-        }
-
-        .menu a {
-            text-decoration: none;
-            color: white; 
-            cursor: pointer;
-        }
-
-        .menu a:hover {
-            text-decoration: underline;
-        }
-
-        .btn-post {
-            background: #ff007a;
-            border: none;
-            padding: 8px 15px;
-            color: white;
-            border-radius: 5px;
-        }
-
-        .content {
-            flex: 1;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .main-feed {
-            flex: 2;
-        }
-
-        .order-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .order-item img {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-        }
-
-        .side-panel {
-            flex: 1;
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 10px;
-            background: #ddd;
-            border: none;
-            margin-top: 10px;
-        }
-
-        .skip {
-            margin-top: 10px;
-            color: #555;
-            cursor: pointer;
-        }
-
-        .small {
-            font-size: 12px;
-            color: #777;
-        }
-
-        .right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .notif-icon {
-            position: relative;
-            font-size: 22px;
-            cursor: pointer;
-        }
-
-        .notif-badge {
-            position: absolute;
-            top: -5px;
-            right: -8px;
-            background: red;
-            color: white;
-            font-size: 10px;
-            padding: 3px 6px;
-            border-radius: 50%;
-        }
-
-        .user {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            object-fit: cover;
-            cursor: pointer;
-        }
-
-        .main-feed {
-            padding: 20px;
-        }
-
-        .announcement-card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .card-logo {
-            width: 45px;
-            height: 45px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .card-title {
-            flex: 1;
-            margin-left: 10px;
-        }
-
-        .card-title h4 {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .card-title p {
-            font-size: 13px;
-            color: #777;
-        }
-
-        .card-menu {
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .card-content h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .card-content p {
-            font-size: 14px;
-            color: #444;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body{
-            background:#f3f4f6;
-        }
-
-        .navbar{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:20px 80px;
-            background:black;
-        }
-
-        .logo img{
-            width:180px;
-        }
-
-        .menu{
-            display:flex;
-            list-style:none;
-            gap:30px;
-        }
-
-        .menu a{
-            text-decoration:none;
-            color:#000;
-            font-weight:500;
-        }
-
-        .menu .active a{
-            color:#2d7df6;
-            border-bottom:2px solid #2d7df6;
-            padding-bottom:8px;
-        }
-
-        .booking-btn{
-            background:#b40000;
-            color:white;
-            border:none;
-            padding:15px 30px;
-            border-radius:30px;
-            cursor:pointer;
-            font-weight:bold;
-        }
-
-        .hero{
-            text-align:center;
-            padding:100px 20px 50px;
-        }
-
-        .hero h1{
-            font-size:55px;
-            font-weight:bold;
-            color:#1f2937;
-        }
-
-        .hero p{
-            margin-top:20px;
-            font-size:22px;
-            color:#6b7280;
-        }
-
-
-.gallery{
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 30px;
-}
-
-.gallery .paket-card{
-    width: 300px;
-    max-height: 400px;
-    background: white;
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.gallery .paket-card img{
-    width: 100%;
-    object-fit: cover;
-}
-
-.card-content{
-    padding: 10px 25px;
-}
-
-.card-content h3{
-    font-size: 18px;
-    font-weight: bold;
-    color: #0f172a;
-}
-
-.card-content p{
-    color: gray;
-    line-height: 1.6;
-}
-
-.old-price{
-    text-decoration: line-through;
-    color: gray;
-    font-size: 15px;
-    display: block;
-}
-
-.price h2{
-    color: orange;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.card-content button{
-    width: 100%;
-    background: orange;
-    border: none;
+.nav-menu li {
+    list-style: none;
+    font-family: "Hanken Grotesk", sans-serif;
     padding: 10px;
-    border-radius: 40px;
-    font-size: 15px;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #E3BEBD;
+    font-size: 16px;
     font-weight: bold;
+}
+
+.nav-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-item .nav-user {
+    width: 45px;
+    height: 45px;
+    border-radius: 30px;
+    border: 3px solid white;
+    overflow: hidden;
     cursor: pointer;
 }
 
-.image-container{
+.nav-item .nav-user img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    display: block;
+}
+
+.nav-search {
     position: relative;
-    width: 100%;
-    height: 350px;
-    overflow: hidden;
 }
 
-.image-container img{
+.nav-search input {
+    background-color: transparent;
+    border: 2px solid rgb(151, 151, 151);
+    outline: none;
+    font-family: "Hanken Grotesk", sans-serif;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 8px 15px;
+    color: #E3BEBD;
+}
+
+.nav-search span {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    color: white;
+}
+
+.btn-logout {
+    background-color: #C41E3A;
+    padding: 8px;
+    outline: none;
+    border-radius: 6px;
+    color: white;
+    font-family: "Hanken Grotesk", sans-serif;
+    font-weight: 600;
+    border: 2px solid rgb(151, 151, 151);
+}
+
+.main-content {
+    padding: 0px 15px;
+    background-color: #1a1a1a;
+    margin-top: 65px;
+    height: calc(100vh - 65px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.dashboard {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+}
+
+.background {
+    position: relative;
+    overflow: hidden;
+    height: 700px;
+}
+
+.background img {
+    width: 100%;
+    height: auto;
     display: block;
 }
 
-.overlay{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
+.item {
+    margin-top: 46px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: 0.3s ease;
-}
-
-.overlay button{
-    background: orange;
+    gap: 10px;
     color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.image-container:hover .overlay{
-    opacity: 1;
-}
-
-.image-container:hover img{
-    transform: scale(1.1);
-    transition: 0.5s;
-}
-
-.bookingcontainer{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 900px;
-    max-height: 90vh;
-    overflow-y: auto;
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 999;
-}
-
-
-.member{
-    flex: 1;
-    min-width: 200px;
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
-    text-align: center;
-}
-
-.member img{
+    padding: 0 40px;
+    font-family: "Hanken Grotesk", sans-serif;
     width: 100%;
-    height: 200px;
+    line-height: 1.8;
+}
+
+.deskripsi {
+    width: 50%;
+}
+
+.deskripsi h1 {
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+.deskripsi p {
+    word-spacing: 10px;
+    margin-top: 6px;
+    color: #E3BEBD;
+}
+
+.item-total {
+    margin-top: 30px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.item-total hr {
+    border: 1px solid #5B4040;
+}
+
+.item-foto {
+    margin-top: 30px;
+    padding: 0 40px;
+}
+
+.item-foto h1 {
+    color: white;
+}
+
+.foto-comonitas {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+}
+
+.foto-comonitas img {
+    margin-top: 20px;
+    width: 100%;
     object-fit: cover;
     border-radius: 10px;
 }
 
-.va-box{
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
+.foto-comonitas img:nth-child(1) {
+    grid-column: span 4;
+    grid-row: span 2;
+    height: 500px;
 }
 
-.upload-text{
-    color: gray;
-    margin-bottom: 15px;
+.foto-comonitas img:nth-child(2) {
+    grid-column: span 2;
+    height: 240px;
 }
 
-.upload-box{
-    border: 2px dashed grey;
-    padding: 10px;
-    text-align: center;
+.foto-comonitas img:nth-child(3) {
+    grid-column: span 2;
+    grid-row: span 2;
+    height: 500px;
+}
+
+.foto-comonitas img:nth-child(4) {
+    grid-column: span 2;
+    height: 240px;
+}
+
+.foto-comonitas img:nth-child(5) {
+    grid-column: span 2;
+    height: 240px;
+}
+
+/* varian */
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background-color: #1a1a1a;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background-color: #1a1a1a;
     border-radius: 10px;
-    background: #fffaf3;
 }
 
-.upload-box input{
-    width: 100%;
-    cursor: pointer;
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: #777;
 }
 
-.booking-modal{
-    display: none;
-    position: fixed;
+.nav-menu li:hover {
+    border-bottom: 2px solid #C41E3A;
+}
+
+.background div::before,
+.background div::after {
+    content: "";
+    position: absolute;
     top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 1;
+}
+
+.background div::before {
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 9999;
+    background: linear-gradient(to right,
+            rgba(0, 0, 0, 0.6),
+            transparent);
 }
 
-.booking-content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    height: 85%;
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
+.background div::after {
+    right: 0;
+    background: linear-gradient(to left,
+            rgba(0, 0, 0, 0.6),
+            transparent);
 }
-
-.booking-content iframe{
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.close-btn{
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 35px;
-    cursor: pointer;
-    z-index: 10000;
-    color: black;
-}
-
-

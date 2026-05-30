@@ -1,14 +1,9 @@
-<?php
+<?php 
 namespace App\Controllers;
 
-class Login extends BaseController
+class Login extends BaseControllers
 {
-    public function index(){
+    public function index() {
         return view('login');
     }
-    
-
-    public function store(){
-        
-    }
-}
+} 
