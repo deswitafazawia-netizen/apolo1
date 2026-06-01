@@ -18,11 +18,10 @@
             </div>
             <aside class="nav-menu">
                 <li><a href="">Dashboard</a></li>
-                <li><a href="">Proyek Lelang</a></li>
-                <li><a href="">Discover</a></li>
-                <li><a href="">Bookkings</a></li>
-                <li><a href="">Pembayaran</a></li>
-                <li><a href="">PhotoGrafer</a></li>
+                <li><a href="">Photografer</a></li>
+                <li><a href="">Proyek lelang</a></li>
+                <li><a href="">Booking</a></li>
+                <li><a href="">Status Pembayaran</a></li>
             </aside>
             <div class="nav-item">
                 <div class="nav-search">
