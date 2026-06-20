@@ -1,10 +1,10 @@
 <?php
 namespace App\Controllers;
 
-class Login extends BaseController
+class Laporan extends BaseController
 {
     public function index()
     {
-        return view('pages/login');
+        return view('pages/laporan');
     }
 }

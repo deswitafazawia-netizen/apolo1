@@ -11,17 +11,37 @@
     <title>Document</title>
 </head>
 <body>
-        <div class="container">
+    <div class="container">
         <nav class="navbar-container">
             <div class="nav-logo">
                 <img src="<?= base_url('assets/logo.png')?>" alt="">
             </div>
             <aside class="nav-menu">
-                <li><a href="">Dashboard</a></li>
-                <li><a href="">Photografer</a></li>
-                <li><a href="">Proyek lelang</a></li>
-                <li><a href="">Booking</a></li>
-                <li><a href="">Status Pembayaran</a></li>
+                <li>
+                    <a href="<?= base_url('dashboard') ?>" class="">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('photografer') ?>" class="">
+                        Photografer
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('proyeklelangpelanggan') ?>" class="">
+                        Proyek Lelang
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('pemesanan') ?>" class="">
+                        Pemesanan
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('statuspembayaranpelanggan') ?>" class="">
+                        Pembayaran
+                    </a>
+                </li>
             </aside>
             <div class="nav-item">
                 <div class="nav-search">
@@ -38,7 +58,6 @@
 
     <div class="photographer-wrapper">
 
-        <!-- SIDEBAR FILTER -->
         <div class="filter-sidebar">
 
             <h2>Filters</h2>
@@ -97,7 +116,6 @@
 
         </div>
 
-        <!-- CONTENT -->
         <div class="photographer-content">
 
             <div class="content-header">
@@ -115,7 +133,6 @@
                     </select>
                 </div>
             </div>
-
 
         <div class="photographer-grid">
             <div class="photographer-card">
@@ -140,8 +157,9 @@
                     </div>
 
                     <div class="card-buttons">
-                        <a href="#" class="btn-book">BOOK NOW</a>
-                        <a href="#" class="btn-portfolio">VIEW PORTFOLIO</a>
+                        <a href="<?= base_url('portofolioichall') ?>" class="btn-portfolio">
+                            VIEW PORTFOLIO
+                        </a>
                     </div>
                 </div>
             </div>
@@ -154,7 +172,7 @@
 
                 <div class="card-body">
                     <div class="card-title">
-                        <h3>Kirania Studio</h3>
+                        <h3>Jack Picture</h3>
                         <span>⭐ 5.0</span>
                     </div>
 
@@ -169,8 +187,9 @@
                     </div>
 
                     <div class="card-buttons">
-                        <a href="#" class="btn-book">BOOK NOW</a>
-                        <a href="#" class="btn-portfolio">VIEW PORTFOLIO</a>
+                        <a href="<?= base_url('...') ?>" class="btn-portfolio">
+                            VIEW PORTFOLIO
+                        </a>
                     </div>
                 </div>
             </div>
@@ -198,8 +217,9 @@
                     </div>
 
                     <div class="card-buttons">
-                        <a href="#" class="btn-book">BOOK NOW</a>
-                        <a href="#" class="btn-portfolio">VIEW PORTFOLIO</a>
+                        <a href="<?= base_url('...') ?>" class="btn-portfolio">
+                            VIEW PORTFOLIO
+                        </a>
                     </div>
                 </div>
             </div>
