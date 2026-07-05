@@ -1,59 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?=base_url('css/style.css')?>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Document</title>
-</head>
-<body>
-        <div class="container">
-        <nav class="navbar-container">
-            <div class="nav-logo">
-                <img src="<?= base_url('assets/logo.png')?>" alt="">
-            </div>
-            <aside class="nav-menu">
-                <li>
-                    <a href="<?= base_url('pengguna') ?>" class="">
-                        Manajemen Pengguna
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('') ?>" class="">
-                        Manajemen Photography
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('') ?>" class="">
-                        Pemesanan
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('') ?>" class="">
-                        Proyek Lelang
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('') ?>" class="">
-                        Pembayaran
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('laporan') ?>" class="">
-                        Laporan
-                    </a>
-                </li>
-            </aside>
-            <div class="nav-item">
-                <button class="btn-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
-            </div>
-        </nav>
-    <main class="main-content">
+<?= $this->extend('dashboard') ?>
 
+<?= $this->section('content') ?>
     <section class="report-header"> 
         <span>REPORTS CENTER</span>
         <h1>Laporan & Statistik Sistem</h1>
@@ -61,7 +8,6 @@
             Kelola dan pantau seluruh aktivitas marketplace photography.
         </p>
     </section>
-
     <div class="stats-grid">
 
         <div class="stat-card">
@@ -85,7 +31,6 @@
         </div>
 
     </div>
-
     <div class="report-filter">
 
         <input type="date">
@@ -103,7 +48,6 @@
         <button>Export PDF</button>
 
     </div>
-
     <div class="report-table">
 
         <table>
@@ -134,7 +78,4 @@
         </table>
 
     </div>
-
-</main>
-</body>
-</html>
+<?= $this->endSection() ?>

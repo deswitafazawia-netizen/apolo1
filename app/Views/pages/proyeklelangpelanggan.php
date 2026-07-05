@@ -1,111 +1,151 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?=base_url('css/style.css')?>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Proyek lelang Photografer</title>
-</head>
-<body>
-    <div class="container">
-        <nav class="navbar-container">
-            <div class="nav-logo">
-                <img src="<?= base_url('assets/logo.png')?>" alt="">
-            </div>
-            <aside class="nav-menu">
-                <li>
-                    <a href="<?= base_url('dashboard') ?>" class="">
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('photografer') ?>" class="">
-                        Photografer
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('proyeklelangpelanggan') ?>" class="">
-                        Proyek Lelang
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('pemesanan') ?>" class="">
-                        Pemesanan
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('statuspembayaranpelanggan') ?>" class="">
-                        Pembayaran
-                    </a>
-                </li>
-            </aside>
-            <div class="nav-item">
-                <div class="nav-search">
-                    <input type="text" placeholder="Cari Photografer">
-                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <div class="nav-user">
-                    <img src="<?= base_url('assets/profilichall.png')?>" alt="">
-                </div>
-                <button class="btn-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
-            </div>
-        </nav>
-<main class="main-content">
+<?= $this->extend('dashboard') ?>
+
+<?= $this->section('content') ?>
 
 <div class="container">
 
     <div class="upload-project">
+    <div class="section-header">
         <h2>Upload Proyek Lelang</h2>
-
-        <form>
-            <input type="text" placeholder="Judul Proyek">
-            <select>
-                <option>Pilih Jenis Photography</option>
-                <option>Wedding</option>
-                <option>Prewedding</option>
-                <option>Wisuda</option>
-                <option>Event</option>
-            </select>
-            <input type="text" placeholder="Lokasi">
-            <input type="date">
-            <input type="number" placeholder="Budget">
-            <label>Deadline Penawaran</label>
-            <input type="date">
-            <textarea placeholder="Deskripsi Proyek"></textarea>
-            <input type="file">
-            <button type="submit">
-                Publish Project
-            </button>
-        </form>
+        <p>Buat proyek photography dan dapatkan penawaran terbaik dari photografer profesional.</p>
     </div>
 
-    <div class="published-project">
-        <h2>Proyek Terpublish</h2>
+    <form action="<?= base_url('dashboard/proyeklelangpelanggan/simpan') ?>"method="post"  enctype="multipart/form-data">
 
-        <div class="project-card">
-            <h3>Wedding Outdoor Surabaya</h3>
+        <div class="form-group">
+            <label>Judul Proyek</label>
+            <input type="text" name="judul_proyek" placeholder="Contoh: Wedding Outdoor Surabaya">
+        </div>
 
-            <p>📍 Surabaya</p>
-            <p>📷 Wedding Photography</p>
-            <p>💰 Budget: Rp5.000.000</p>
-            <p>⏳ Deadline: 20 Juni 2026</p>
-
-            <span class="status active">Aktif</span>
-
-            <div class="proposal-info">
-                8 Penawaran Masuk
+        <div class="form-row">
+            <div class="form-group">
+                <label>Tanggal Acara</label>
+                <input type="date" name="tgl_acara">
             </div>
 
-            <button>Lihat Detail</button>
-            <button>Lihat Penawaran</button>
-            <button>Tutup Lelang</button>
+            <div class="form-group">
+                <label>Lokasi</label>
+                <input type="text" name="lokasi" placeholder="Masukkan lokasi acara">
+            </div>
         </div>
-    </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Budget</label>
+                <input type="number" name="budget" placeholder="Rp 5.000.000">
+            </div>
+
+            <div class="form-group">
+                <label>Deadline Penawaran</label>
+                <input type="date" name="deadline_penawaran">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Deskripsi Proyek</label>
+                <textarea name="deskripsi" placeholder="Jelaskan kebutuhan photography Anda secara detail..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Lampiran Referensi</label>
+                <input type="file" name="lampiran" class="file-upload">
+            </div>
+        </div>
+
+        <button type="submit" class="publish-btn">
+            <i class="fa-solid fa-paper-plane"></i>
+            Publish Project
+        </button>
+
+    </form>
 </div>
-</main>
-</body>
-</html>
+<div class="published-project">
+
+    <?php if(!empty($proyek)) : ?>
+
+        <?php foreach($proyek as $p) : ?>
+
+        <div class="project-card">
+
+            <div class="project-top">
+
+            <span class="status <?= $p['id_status'] == 7 ? 'active' : 'closed' ?>">
+                            <?php
+            switch ($p['id_status']) {
+                case 7:
+                    echo '<span class="status active">Proyek Aktif</span>';
+                    break;
+
+                case 8:
+                    echo '<span class="status closed">Proyek Ditutup</span>';
+                    break;
+
+                default:
+                    echo '<span class="status">Status Tidak Diketahui (' . $p['id_status'] . ')</span>';
+            }
+            ?>
+            </span>
+            </div>
+
+            <h3><?= $p['judul_proyek']; ?></h3>
+
+            <span>
+                    <i class="fa-solid fa-calendar"></i>
+                    <?= date('d M Y', strtotime($p['tgl_acara'])); ?>
+            </span>
+
+            <p class="project-desc">
+                <?= $p['deskripsi']; ?>
+            </p>
+
+            <div class="project-meta">
+                <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <?= $p['lokasi']; ?>
+                </span>
+
+            </div>
+
+            <div class="project-budget">
+                <small>Budget</small>
+                <h4>
+                    Rp <?= number_format($p['budget'],0,',','.'); ?>
+                </h4>
+            </div>
+
+            <?php if(!empty($p['lampiran'])) : ?>
+                <div style="margin-top:15px;">
+                    <a href="<?= base_url('uploads/proyek/'.$p['lampiran']); ?>" target="_blank">
+                        Lihat Lampiran
+                    </a>
+                </div>
+            <?php endif; ?>
+
+            <div class="project-actions">
+                <a href="<?= base_url('dashboard/penawaranpelanggan/'.$p['id_proyek']) ?>" class="btn-penawaran"> 
+                    Penawaran
+                </a>
+
+                <a href="<?= base_url('dashboard/proyeklelangpelanggan/tutup/'.$p['id_proyek']) ?>"
+                class="btn-close"
+                onclick="return confirm('Yakin ingin menutup proyek ini?')">
+                    Tutup
+                </a>
+            </div>
+
+        </div>
+
+        <?php endforeach; ?>
+
+    <?php else : ?>
+
+        <div class="project-card">
+            <h3>Belum Ada Proyek</h3>
+            <p>Silakan upload proyek pertama Anda.</p>
+        </div>
+
+    <?php endif; ?>
+
+</div>
+<?= $this->endSection() ?>

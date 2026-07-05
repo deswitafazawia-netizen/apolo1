@@ -9,14 +9,14 @@
         <div class="item">
             <div class="deskripsi">
             <h1>Apolo Community</h1>
-            <p> Apolo Community adalah platform layanan fotografi yang mempertemukan
-                pelanggan dengan photografer profesional dalam satu sistem terintegrasi.
-                Pengguna dapat menjelajahi portofolio, memilih jenis layanan fotografi,
+            <p> Apolo Community adalah platform layanan photography yang mempertemukan
+                pelanggan dengan photografer dalam satu sistem terintegrasi.
+                Pengguna dapat menjelajahi portofolio, memilih jenis layanan photography,
                 melakukan pemesanan, serta melakukan pembayaran secara online dengan
                 mudah dan aman.
             </p>
             <p> Didukung fitur proyek lelang, pelanggan dapat mempublikasikan kebutuhan
-                fotografi dan menerima penawaran dari berbagai photografer. Sistem ini
+                photography dan menerima penawaran dari berbagai photografer. Sistem ini
                 dirancang untuk menciptakan proses pemesanan yang lebih transparan,
                 efisien, dan memberikan pengalaman terbaik bagi pelanggan maupun
                 photografer.
@@ -26,8 +26,8 @@
             <div class="item-total">
                 <hr>
                 <div>
-                    <p>EQUIPMENT</p>
-                    <span>Ph  ase One</span>
+                    <p></p>
+                    <span></span>
                 </div>
                 <hr>
             </div>
@@ -43,58 +43,13 @@
                 <img src="<?= base_url('assets/bg5.jpeg')?>" alt="">
             </div>
         </div>
-<section class="testimonials">
-    <div class="rating">
-        <p class="rating-p">TESTIMONIALS</p>
-        <h1>Client Stories</h1>
-    </div>
 
-    <div class="testimonial-container">
-
-        <div class="testimonial-card">
-            <div class="testimonial-header">
-                <div class="profile">
-                    <div class="avatar">EM</div>
-                    <div>
-                        <h3>Elena Moretti</h3>
-                        <span>Creative Director, LUXE Magazine</span>
-                    </div>
-                </div>
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-            </div>
-
-            <p class="testimonial-text">
-                “Julian's eye for detail is unparalleled. He didn't just take photos; he captured the soul of our brand narrative. The minimal aesthetic he brings is exactly what modern luxury demands.”
-            </p>
-        </div>
-
-        <div class="testimonial-card">
-            <div class="testimonial-header">
-                <div class="profile">
-                    <div class="avatar">DA</div>
-                    <div>
-                        <h3>David Arlow</h3>
-                        <span>Architect, Arlow & Partners</span>
-                    </div>
-                </div>
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-            </div>
-
-            <p class="testimonial-text">
-                “In architectural photography, precision is everything. Julian understands lines, shadows, and materials like nobody else. Professional, punctual, and highly skilled.”
-            </p>
-        </div>
         <footer class="dp-footer reveal">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <img src="<?= base_url('assets/logo.png') ?>" alt="Apolo" class="footer-logo">
-                    <p>Apolo Community — Platform jasa fotografi profesional yang menghubungkan pelanggan dengan fotografer terpercaya.</p>
+                    <p>Apolo Community — Platform jasa photography profesional yang 
+                        menghubungkan pelanggan dengan fotografer terpercaya.</p>
                 </div>
                 <div>
                     <h4 class="footer-col-title">Layanan</h4>
@@ -128,7 +83,5 @@
             </div>
         </footer>
 
-    </div>
-</section>
     </div>
 <?= $this->endSection() ?>

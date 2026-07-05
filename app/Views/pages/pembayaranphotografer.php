@@ -1,57 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?=base_url('css/style.css')?>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Pembayaran photografer</title>
-</head>
-<body>
-    <div class="container">
-        <nav class="navbar-container">
-            <div class="nav-logo">
-                <img src="<?= base_url('assets/logo.png')?>" alt="">
-            </div>
-            <aside class="nav-menu">
-                <li>
-                    <a href="<?= base_url('dashboard') ?>" class="">
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('pesananmasuk') ?>" class="">
-                        Pesanan Masuk
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('proyeklelangphotografer') ?>" class="">
-                        Proyek Lelang
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('pembayaranphotografer') ?>" class="">
-                        Pembayaran
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('rating') ?>" class="">
-                        Rating & Ulasan
-                    </a>
-                </li>
-            </aside>
-            <div class="nav-item">
-                <div class="nav-user">
-                    <img src="<?= base_url('assets/profilichall.png')?>" alt="">
-                </div>
-                <button class="btn-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
-            </div>
-        </nav>
-    <div class="main-content">
+<?= $this->extend('dashboard') ?>
 
+<?= $this->section('content') ?>
     <div class="page-header">
         <h2>Pembayaran Pelanggan</h2>    
         <p>Daftar pembayaran yang telah dilakukan pelanggan untuk layanan photography.</p>
@@ -80,8 +29,6 @@
         </div>
 
     </div>
-
-    <!-- Daftar Pembayaran -->
 
     <div class="payment-container">
 
@@ -186,7 +133,4 @@
         </div>
 
     </div>
-
-</div>
-</body>
-</html>
+<?= $this->endSection() ?>

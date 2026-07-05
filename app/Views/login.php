@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
     <div class="login-container">
@@ -21,12 +21,12 @@
             <span>APOLLO COMMUNITY</span>
 
             <h1>
-                Capture Every <br>
-                Beautiful Moment
+                Abadikan setiap <br>
+                Moment Indah
             </h1>
 
             <p>
-                Platform jasa fotografi profesional untuk
+                Platform jasa photography untuk
                 menemukan photografer terbaik sesuai kebutuhan Anda.
             </p>
         </div>
@@ -45,29 +45,20 @@
                 Masuk ke akun Anda untuk melanjutkan
             </p>
 
-            <form action="" method="post">
+            <form action="<?= base_url('store') ?>" method="post">
 
                 <div class="input-group">
                     <label>Username</label>
-                    <input type="text" placeholder="Masukkan Username">
-                </div>
-
-                <div class="input-group">
-                    <label>Email</label>
-                    <input type="text" placeholder="Masukkan Email">
-                </div>
-
-                <div class="input-group">
-                    <label>No.Hp</label>
-                    <input type="text" placeholder="Masukkan No.Hp">
+                    <input type="text" name="username" placeholder="Masukkan Username">
                 </div>
 
                 <div class="input-group">
                     <label>Password</label>
-                    <input type="password" placeholder="Masukkan Password">
+                    <input type="password" name="password" placeholder="Masukkan Password">
                 </div>
 
                 <button type="submit">
+                    <i class="fa-solid fa-right-to-bracket"></i>
                     Login
                 </button>
 
@@ -75,7 +66,7 @@
 
             <div class="register-link">
                 Belum punya akun?
-                <a href="#">Daftar Sekarang</a>
+                <a href="<?= base_url('register') ?>">Daftar Sekarang</a>
             </div>
 
         </div>

@@ -1,104 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?=base_url('css/style.css')?>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Manajemen Pengguna</title>
-</head>
-<body>
-     <div class="container">
-        <nav class="navbar-container">
-            <div class="nav-logo">
-                <img src="<?= base_url('assets/logo.png')?>" alt="">
-            </div>
-            <aside class="nav-menu">
-                <li>
-                    <a href="<?= base_url('pengguna') ?>" class="">
-                        Manajemen Pengguna
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('photography') ?>" class="">
-                        Manajemen Photography
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('pemesananadmin') ?>" class="">
-                        Pemesanan
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('proyeklelangadmin') ?>" class="">
-                        Proyek Lelang
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('pembayaranadmin') ?>" class="">
-                        Pembayaran
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('laporan') ?>" class="">
-                        Laporan
-                    </a>
-                </li>
-            </aside>
-            <div class="nav-item">
-                <button class="btn-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
-            </div>
-        </nav>
-<div class="main-content">
+<?= $this->extend('dashboard') ?>
 
+<?= $this->section('content') ?>
     <div class="page-header">
         <h2>Manajemen Pengguna</h2>
         <p>Kelola seluruh data pelanggan dan photografer yang terdaftar pada sistem.</p>
     </div>
-
     <div class="stats-container">
-
         <div class="stats-card">
-            <h3>245</h3>
+            <h3><?= $totalPengguna; ?></h3>
             <p>Total Pengguna</p>
         </div>
 
         <div class="stats-card">
-            <h3>180</h3>
+            <h3><?= $totalPelanggan; ?></h3>
             <p>Pelanggan</p>
         </div>
 
         <div class="stats-card">
-            <h3>65</h3>
+            <h3><?= $totalPhotografer; ?></h3>
             <p>Photografer</p>
         </div>
 
         <div class="stats-card">
-            <h3>230</h3>
+            <h3><?= $akunAktif; ?></h3>
             <p>Akun Aktif</p>
         </div>
-
     </div>
-
 <div class="filter-section">
 
-    <a href="<?= base_url('pengguna') ?>" class="filter-btn active">
+    <a href="<?= base_url('dashboard/pengguna') ?>" class="filter-btn active">
         Pelanggan
     </a>
 
-    <a href="<?= base_url('tabelphotografer') ?>" class="filter-btn">
+    <a href="<?= base_url('dashboard/tabelphotografer') ?>" class="filter-btn">
         Photografer
     </a>
 
 </div>
-    
     <div class="table-container">
+        <div class="table-header">
+            <h3>Data Pelanggan</h3>
 
+            <a href="<?= base_url('dashboard/tambahdatapelanggan') ?>" class="btn-add">
+                <i class="fa-solid fa-plus"></i>
+                Tambah Data Pelanggan
+            </a>
+        </div>
     <table class="user-table">
-
         <thead>
             <tr>
                 <th>ID Pelanggan</th>
@@ -109,74 +57,79 @@
                 <th>Aksi</th>
             </tr>
         </thead>
+            <tbody>
 
-        <tbody>
+            <?php if(!empty($pelanggan)): ?>
+
+                <?php foreach($pelanggan as $p): ?>
+
+                <tr>
+
+                    <td>
+                        PLG<?= str_pad($p['id_pelanggan'],3,'0',STR_PAD_LEFT); ?>
+                    </td>
+
+                    <td><?= esc($p['nama_pelanggan']); ?></td>
+
+                    <td><?= esc($p['email']); ?></td>
+
+                    <td><?= esc($p['no_hp']); ?></td>
+
+                    <td>
+
+                        <?php if($p['id_status']==1): ?>
+
+                            <span class="status-badge active">
+                                Aktif
+                            </span>
+
+                        <?php else: ?>
+
+                            <span class="status-badge inactive">
+                                Nonaktif
+                            </span>
+
+                        <?php endif; ?>
+
+                    </td>
+
+                <td class="action-buttons">
+
+                    <a href="<?= base_url('dashboard/detailpelanggan/'.$p['id_pelanggan']) ?>"
+                    class="btn-detail">
+                        <i class="fa-solid fa-eye"></i> Detail
+                    </a>
+
+                    <a href="<?= base_url('dashboard/pengguna/edit/'.$p['id_pelanggan']) ?>"
+                    class="btn-edit">
+                        <i class="fa-solid fa-pen"></i> Edit
+                    </a>
+
+                    <a href="<?= base_url('dashboard/pengguna/hapus/'.$p['id_pelanggan']) ?>"
+                    class="btn-delete"
+                    onclick="return confirm('Yakin ingin menghapus data ini?')">
+                        <i class="fa-solid fa-trash"></i> Hapus
+                    </a>
+
+                </td>
+
+                </tr>
+
+                <?php endforeach; ?>
+
+            <?php else: ?>
 
             <tr>
-                <td>PLG001</td>
-                <td>Siti Aisyah</td>
-                <td>siti@gmail.com</td>
-                <td>081234567890</td>
-                <td>
-                    <span class="status-badge active">
-                        Aktif
-                    </span>
+
+                <td colspan="6" style="text-align:center">
+                    Belum ada data pelanggan.
                 </td>
-                <td>
-                    <button class="btn-detail">Detail</button>
-                </td>
+
             </tr>
 
-            <tr>
-                <td>PLG002</td>
-                <td>Ahmad Fauzi</td>
-                <td>ahmad@gmail.com</td>
-                <td>082345678901</td>
-                <td>
-                    <span class="status-badge active">
-                        Aktif
-                    </span>
-                </td>
-                <td>
-                    <button class="btn-detail">Detail</button>
-                </td>
-            </tr>
+            <?php endif; ?>
 
-            <tr>
-                <td>PLG003</td>
-                <td>Rina Putri</td>
-                <td>rina@gmail.com</td>
-                <td>083456789012</td>
-                <td>
-                    <span class="status-badge inactive">
-                        Nonaktif
-                    </span>
-                </td>
-                <td>
-                    <button class="btn-detail">Detail</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>PLG004</td>
-                <td>Dewi Lestari</td>
-                <td>dewi@gmail.com</td>
-                <td>084567890123</td>
-                <td>
-                    <span class="status-badge active">
-                        Aktif
-                    </span>
-                </td>
-                <td>
-                    <button class="btn-detail">Detail</button>
-                </td>
-            </tr>
-
-        </tbody>
-
+            </tbody>
     </table>
-
-</div>
-</div>
-</body>
-</html>
+    </div>
+<?= $this->endSection() ?>
