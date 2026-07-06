@@ -40,7 +40,7 @@ class Proyeklelangpelanggan extends BaseController
             'tgl_dibuat'         => date('Y-m-d H:i:s')
         ]);
 
-        return redirect()->to(base_url('dashboard/proyeklelangpelanggan'));
+        return redirect()->to(base_url('dashboard/proyeklelang'));
     }
 
         public function tutup($id)
@@ -51,7 +51,7 @@ class Proyeklelangpelanggan extends BaseController
                 'id_status' => 8
             ]);
 
-            return redirect()->to(base_url('dashboard/proyeklelangpelanggan'))
+            return redirect()->to(base_url('dashboard/proyeklelang'))
                             ->with('success', 'Proyek berhasil ditutup.');
         }
 

@@ -3,25 +3,25 @@
 namespace App\Controllers;
 
 use App\Models\PhotograferModel;
-use App\Models\JenisPhotographyModel;
+use App\Models\Portofoliomodel;
 
-class Portofolioichall extends BaseController
+class Portofolio extends BaseController
 {
     public function index($id)
     {
         $photograferModel = new PhotograferModel();
-        $jenisModel = new JenisPhotographyModel();
+        $portfolioModel = new Portofoliomodel();
 
         $data['photografer'] = $photograferModel->find($id);
 
-        $data['jenis'] = $jenisModel->GetPortofolio($id);
+        $data['portofolio'] = $portfolioModel->GetPortofolio($id);
 
-        return view('pages/portofolioichall', $data);
+        return view('pages/portofolio', $data);
     }
 
     public function edit($id)
     {
-        $model = new \App\Models\PortofolioModel();
+        $model = new Portofoliomodel();
 
         $data['portofolio'] = $model->find($id);
 
@@ -50,7 +50,7 @@ class Portofolioichall extends BaseController
         $model->update($id, $data);
 
         return redirect()->to(base_url('dashboard/profil'))
-                        ->with('success','Portofolio berhasil diperbarui');
+                        ->with('success', 'Portofolio berhasil diperbarui');
     }
 
     public function hapus($id)
@@ -60,6 +60,6 @@ class Portofolioichall extends BaseController
         $model->delete($id);
 
         return redirect()->to(base_url('dashboard/profil'))
-                        ->with('success','Portofolio berhasil dihapus');
+                        ->with('success', 'Portofolio berhasil dihapus');
     }
 }

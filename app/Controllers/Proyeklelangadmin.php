@@ -40,7 +40,7 @@ class Proyeklelangadmin extends BaseController
 
         $model->delete($id);
 
-        return redirect()->to(base_url('dashboard/proyeklelangadmin'))
+        return redirect()->to(base_url('dashboard/proyeklelang'))
                          ->with('success', 'Data berhasil dihapus.');
     }
 }

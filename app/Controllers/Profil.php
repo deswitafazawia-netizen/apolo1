@@ -3,97 +3,97 @@
 namespace App\Controllers;
 
 use App\Models\Photografermodel;
+use App\Models\Pelangganmodel;
+use App\Models\Adminmodel;
 use App\Models\Portofoliomodel;
 
 class Profil extends BaseController
 {
-        public function index()
-        {
+    public function index()
+    {
+        $role = session()->get('role');
+        $data['role'] = $role;
+
+        if ($role === 'photografer') {
             $id = session()->get('id_photografer');
-
-            $photografermodel = new Photografermodel();
-            $portofoliomodel  = new Portofoliomodel();
-
-            $data['photografer'] = $photografermodel->find($id);
-
-            $data['fotoProfil'] = $portofoliomodel
-                ->where('id_photografer', $id)
-                ->first();
-
-            $data['portofolio'] = $portofoliomodel
+            $model = new Photografermodel();
+            $portofolioModel = new Portofoliomodel();
+            $data['user'] = $model->find($id);
+            $data['portofolio'] = $portofolioModel
                 ->where('id_photografer', $id)
                 ->findAll();
-
-            return view('pages/profil', $data);
+        } elseif ($role === 'pelanggan') {
+            $id = session()->get('id_pelanggan');
+            $model = new Pelangganmodel();
+            $data['user'] = $model->find($id);
+            $data['portofolio'] = [];
+        } elseif ($role === 'admin') {
+            $id = session()->get('id_admin');
+            $model = new Adminmodel();
+            $data['user'] = $model->find($id);
+            $data['portofolio'] = [];
         }
 
-    public function editPortofolio($id)
-        {
-            $model = new \App\Models\Portofoliomodel();
+        return view('pages/profil', $data);
+    }
 
-            $data['portofolio'] = $model->find($id);
+    public function update()
+    {
+        $role = session()->get('role');
 
-            return view('pages/editportofolio', $data);
-        }
-
-    public function updatePortofolio($id)
-        {
-            $model = new \App\Models\Portofoliomodel();
-
+        if ($role === 'photografer') {
+            $model = new Photografermodel();
+            $id = session()->get('id_photografer');
             $data = [
-                'deskripsi' => $this->request->getPost('deskripsi')
+                'nama_photografer' => $this->request->getPost('nama_photografer'),
+                'email'            => $this->request->getPost('email'),
+                'no_hp'            => $this->request->getPost('no_hp'),
+                'alamat'           => $this->request->getPost('alamat'),
             ];
-
-            $foto = $this->request->getFile('foto');
-
-            if ($foto && $foto->isValid() && !$foto->hasMoved()) {
-
-                $namaFoto = $foto->getRandomName();
-
-                $foto->move('uploads/portofolio', $namaFoto);
-
-                $lama = $model->find($id);
-
-                if ($lama && !empty($lama['foto'])) {
-
-                    $path = FCPATH.'uploads/portofolio/'.$lama['foto'];
-
-                    if (file_exists($path)) {
-                        unlink($path);
-                    }
-                }
-
-                $data['foto'] = $namaFoto;
+            $password = $this->request->getPost('password');
+            if (!empty($password)) {
+                $data['password'] = password_hash($password, PASSWORD_DEFAULT);
             }
-
-            $model->update($id,$data);
-
-            return redirect()->to(base_url('dashboard/profil'))
-                            ->with('success','Portofolio berhasil diubah.');
+        } elseif ($role === 'pelanggan') {
+            $model = new Pelangganmodel();
+            $id = session()->get('id_pelanggan');
+            $data = [
+                'nama_pelanggan' => $this->request->getPost('nama_pelanggan'),
+                'email'          => $this->request->getPost('email'),
+                'no_hp'          => $this->request->getPost('no_hp'),
+            ];
+            $password = $this->request->getPost('password');
+            if (!empty($password)) {
+                $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+            }
+        } elseif ($role === 'admin') {
+            $model = new Adminmodel();
+            $id = session()->get('id_admin');
+            $data = [
+                'username' => $this->request->getPost('username'),
+            ];
+            $password = $this->request->getPost('password');
+            if (!empty($password)) {
+                $data['password'] = $password;
+            }
         }
 
-    public function hapusPortofolio($id)
-        {
-            $model = new \App\Models\Portofoliomodel();
-
-            $data = $model->find($id);
-
-            if($data){
-
-                if(!empty($data['foto'])){
-
-                    $path = FCPATH.'uploads/portofolio/'.$data['foto'];
-
-                    if(file_exists($path)){
-                        unlink($path);
-                    }
-
+        $file = $this->request->getFile('foto');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $namaFile = $file->getRandomName();
+            $file->move('uploads/profil', $namaFile);
+            $lama = $model->find($id);
+            if ($lama && !empty($lama['foto'])) {
+                $path = FCPATH . 'uploads/profil/' . $lama['foto'];
+                if (file_exists($path)) {
+                    unlink($path);
                 }
-
-                $model->delete($id);
             }
-
-            return redirect()->to(base_url('dashboard/profil'))
-                            ->with('success','Portofolio berhasil dihapus.');
+            $data['foto'] = $namaFile;
         }
+
+        $model->update($id, $data);
+        return redirect()->to(base_url('dashboard/profil'))
+                        ->with('success', 'Profil berhasil diperbarui.');
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\AdminModel;
@@ -22,16 +23,16 @@ class Login extends BaseController
             ->where('username', $username)
             ->first();
 
-            if ($admin && $password == $admin['password']) {
-                session()->set([
-                    'id_admin' => $admin['id_admin'],
-                    'username' => $admin['username'],
-                    'role' => 'admin',
-                    'login' => true
-                ]);
+        if ($admin && $password == $admin['password']) {
+            session()->set([
+                'id_admin' => $admin['id_admin'],
+                'username' => $admin['username'],
+                'role' => 'admin',
+                'login' => true
+            ]);
 
-                return redirect()->to(base_url('dashboard'));
-            }
+            return redirect()->to(base_url('dashboard'));
+        }
 
         $pelangganM = new PelangganModel();
         $Pelanggan = $pelangganM
@@ -43,6 +44,7 @@ class Login extends BaseController
                 'id_pelanggan' => $Pelanggan['id_pelanggan'],
                 'username' => $Pelanggan['nama_pelanggan'],
                 'role' => 'pelanggan',
+                'foto' => $Pelanggan['foto'],
                 'login' => true
             ]);
 
@@ -60,20 +62,21 @@ class Login extends BaseController
                 'id_photografer' => $Photografer['id_photografer'],
                 'username' => $Photografer['nama_photografer'],
                 'role' => 'photografer',
+                'foto' => $Photografer['foto'],
                 'login' => true
-                
+
             ]);
 
             return redirect()->to(base_url('dashboard'));
         }
-            return redirect()->to('/login')
-                 ->with('error', 'Username atau Password salah');
-                 
+        return redirect()->to('/login')
+             ->with('error', 'Username atau Password salah');
+
     }
 
-            public function logout()
-            {
-                session()->destroy();
-                return redirect()->to('/login');
-            }
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/login');
+    }
 }
