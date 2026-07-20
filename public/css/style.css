@@ -1297,10 +1297,12 @@ button:hover {
 
 .card-buttons {
     margin-top: auto;
+    display: flex;
+    gap: 8px;
 }
 
 .btn-portfolio {
-    display: block;
+    flex: 1;
     text-align: center;
     padding: 10px;
     background: #c8102e;
@@ -1314,6 +1316,23 @@ button:hover {
 
 .btn-portfolio:hover {
     background: #a20c24;
+}
+
+.btn-chat {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    background: #2563eb;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    transition: .3s;
+}
+
+.btn-chat:hover {
+    background: #1d4ed8;
 }
 
 
@@ -2600,6 +2619,11 @@ button:hover {
     color: #fff;
 }
 
+.warning {
+    background: #f59e0b;
+    color: #fff;
+}
+
 
 .btn-accept {
     background: #22c55e;
@@ -3348,9 +3372,67 @@ button:hover {
     border: 1px solid rgba(107, 114, 128, .4);
 }
 
+.badge-warning {
+    background: rgba(245, 158, 11, .15);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, .4);
+}
+
 .action-buttons {
     display: flex;
     gap: 8px;
+}
+
+.alasan-text {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 4px;
+}
+
+.alasan-warning {
+    color: #fbbf24;
+}
+
+.alasan-card {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #333;
+}
+
+.alasan-card-warning {
+    color: #fbbf24;
+}
+
+.btn-verif {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-verif-setujui {
+    background: #22c55e;
+    color: #fff;
+}
+
+.btn-verif-setujui:hover {
+    background: #16a34a;
+}
+
+.btn-verif-tolak {
+    background: #ef4444;
+    color: #fff;
+}
+
+.btn-verif-tolak:hover {
+    background: #dc2626;
 }
 
 .btn-add {

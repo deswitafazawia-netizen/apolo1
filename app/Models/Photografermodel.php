@@ -16,7 +16,8 @@ class PhotograferModel extends Model
         'alamat',
         'password',
         'foto',
-        'id_status'
+        'id_status',
+        'tgl_beku_hingga'
     ];
 
     protected $useTimestamps = false;

@@ -39,6 +39,10 @@
 
             <img src="<?= base_url('assets/logo.png') ?>" alt="">
 
+            <?php if(session()->getFlashdata('error')) : ?>
+                <div class="alert-error" style="text-align:center;margin-bottom:16px;"><?= session()->getFlashdata('error') ?></div>
+            <?php endif; ?>
+
             <h2>Selamat Datang</h2>
 
             <p>

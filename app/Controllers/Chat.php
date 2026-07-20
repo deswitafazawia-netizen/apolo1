@@ -25,6 +25,36 @@ class Chat extends BaseController
         return view('pages/chat', $data);
     }
 
+    public function inboxPelanggan()
+    {
+        $chatModel = new \App\Models\ChatModel();
+        $id_pelanggan = session()->get('id_pelanggan');
+
+        $conversations = $chatModel
+            ->select('chat.*, photografer.nama_photografer, photografer.foto as foto_photografer')
+            ->join('photografer', 'photografer.id_photografer = chat.id_photografer')
+            ->where('chat.id_pelanggan', $id_pelanggan)
+            ->orderBy('chat.waktu', 'DESC')
+            ->findAll();
+
+        $grouped = [];
+        foreach ($conversations as $msg) {
+            $pid = $msg['id_photografer'];
+            if (!isset($grouped[$pid])) {
+                $grouped[$pid] = [
+                    'id_photografer' => $pid,
+                    'nama_photografer' => $msg['nama_photografer'],
+                    'foto_photografer' => $msg['foto_photografer'],
+                    'last_message' => $msg['pesan'],
+                    'last_time' => $msg['waktu']
+                ];
+            }
+        }
+
+        $data['conversations'] = $grouped;
+        return view('pages/chat_inbox_pelanggan', $data);
+    }
+
     public function inbox()
     {
         $chatModel = new \App\Models\ChatModel();

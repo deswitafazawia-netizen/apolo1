@@ -18,8 +18,10 @@ $routes->group('dashboard', function ($routes) {
     $routes->post('booking/simpan', 'Booking::simpan');
     $routes->get('pemesanan', 'Pemesanan::index');
     $routes->get('pemesanan/terima/(:num)', 'Pemesanan::terima/$1');
-    $routes->get('pemesanan/tolak/(:num)', 'Pemesanan::tolak/$1');
-    $routes->get('pemesanan/batalkan/(:num)', 'Pemesanan::batalkan/$1');
+    $routes->match(['get', 'post'], 'pemesanan/tolak/(:num)', 'Pemesanan::tolak/$1');
+    $routes->match(['get', 'post'], 'pemesanan/batalkan/(:num)', 'Pemesanan::batalkan/$1');
+    $routes->get('pemesanan/verifikasi-pembatalan/(:num)', 'Pemesanan::verifikasiPembatalan/$1');
+    $routes->get('pemesanan/tolak-verifikasi-pembatalan/(:num)', 'Pemesanan::tolakVerifikasiPembatalan/$1');
     $routes->get('profil', 'Profil::index');
     $routes->post('profil/update', 'Profil::update');
     $routes->get('editportofolio/(:num)', 'Portofolio::edit/$1');
@@ -27,6 +29,7 @@ $routes->group('dashboard', function ($routes) {
     $routes->get('hapusportofolio/(:num)', 'Portofolio::hapus/$1');
     $routes->get('chat/(:num)', 'Chat::index/$1');
     $routes->get('chat/inbox', 'Chat::inbox');
+    $routes->get('chat/pelanggan-inbox', 'Chat::inboxPelanggan');
     $routes->get('chat/with/(:num)', 'Chat::with/$1');
     $routes->post('chat/kirim', 'Chat::kirim');
     $routes->post('chat/kirim-ajax', 'Chat::kirimAjax');

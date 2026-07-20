@@ -33,7 +33,7 @@
                     <div class="message <?= $isMine ? 'message-sent' : 'message-received' ?>">
                         <div class="message-content">
                             <p><?= esc($msg['pesan']) ?></p>
-                            <span class="message-time"><?= date('H:i', strtotime($msg['waktu'])) ?></span>
+                            <span class="message-time" data-id="<?= $msg['id_chat'] ?>"><?= date('H:i', strtotime($msg['waktu'])) ?></span>
                         </div>
                     </div>
                 <?php endforeach; ?>

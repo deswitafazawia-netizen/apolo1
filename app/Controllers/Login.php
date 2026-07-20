@@ -58,6 +58,21 @@ class Login extends BaseController
 
         if ($Photografer && password_verify($password, $Photografer['password'])) {
 
+            // Cek apakah akun dibekukan
+            if (!empty($Photografer['tgl_beku_hingga']) && strtotime($Photografer['tgl_beku_hingga']) > time()) {
+                $sisa = ceil((strtotime($Photografer['tgl_beku_hingga']) - time()) / (60 * 60 * 24));
+                return redirect()->to('/login')
+                     ->with('error', "Akun Anda dibekukan selama {$sisa} hari karena pembatalan mendadak.");
+            }
+
+            // Jika masa beku sudah lewat, aktifkan kembali
+            if (!empty($Photografer['tgl_beku_hingga']) && strtotime($Photografer['tgl_beku_hingga']) <= time()) {
+                $photograferM->update($Photografer['id_photografer'], [
+                    'id_status' => 1,
+                    'tgl_beku_hingga' => null
+                ]);
+            }
+
             session()->set([
                 'id_photografer' => $Photografer['id_photografer'],
                 'username' => $Photografer['nama_photografer'],

@@ -15,6 +15,13 @@
     </p>
 </div>
 
+<?php if(session()->getFlashdata('success')) : ?>
+    <div class="alert-success"><?= session()->getFlashdata('success') ?></div>
+<?php endif; ?>
+<?php if(session()->getFlashdata('error')) : ?>
+    <div class="alert-error"><?= session()->getFlashdata('error') ?></div>
+<?php endif; ?>
+
 <div class="stats-container">
     <div class="stats-card">
         <div class="stats-icon">
@@ -74,6 +81,15 @@
     <?php endif; ?>
     <?php if ($role === 'admin'): ?>
     <div class="stats-card">
+        <div class="stats-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+            <i class="fas fa-clock"></i>
+        </div>
+        <div>
+            <h3><?= $menunggu_verifikasi ?? 0 ?></h3>
+            <p>Menunggu Verifikasi</p>
+        </div>
+    </div>
+    <div class="stats-card">
         <div class="stats-icon" style="background:linear-gradient(135deg,#6b7280,#4b5563)">
             <i class="fas fa-ban"></i>
         </div>
@@ -106,6 +122,7 @@
                         <th>Lokasi</th>
                         <th>Total</th>
                         <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -117,6 +134,7 @@
                             3 => ['text' => 'Selesai', 'class' => 'badge-success'],
                             4 => ['text' => 'Ditolak', 'class' => 'badge-reject'],
                             5 => ['text' => 'Dibatalkan', 'class' => 'badge-cancel'],
+                            12 => ['text' => 'Menunggu Verifikasi', 'class' => 'badge-warning'],
                         ];
                         $s = $p['id_status'];
                         ?>
@@ -132,6 +150,18 @@
                                 <span class="<?= $label[$s]['class'] ?? 'badge-pending' ?>">
                                     <?= $label[$s]['text'] ?? '-' ?>
                                 </span>
+                                <?php if (($s == 4 || $s == 5) && !empty($p['alasan'])): ?>
+                                <div class="alasan-text"><?= esc($p['alasan']) ?></div>
+                                <?php endif; ?>
+                                <?php if ($s == 12 && !empty($p['alasan'])): ?>
+                                <div class="alasan-text alasan-warning"><strong>Alasan:</strong> <?= esc($p['alasan']) ?></div>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if ($s == 12): ?>
+                                    <a href="<?= base_url('dashboard/pemesanan/verifikasi-pembatalan/'.$p['id_pemesanan']) ?>" class="btn-verif btn-verif-setujui" onclick="return confirm('Setujui pembatalan ini?')">Setujui</a>
+                                    <a href="<?= base_url('dashboard/pemesanan/tolak-verifikasi-pembatalan/'.$p['id_pemesanan']) ?>" class="btn-verif btn-verif-tolak" onclick="return confirm('Tolak permohonan pembatalan ini?')">Tolak</a>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -156,21 +186,27 @@
                     </div>
                     <div class="order-detail">
                         <?php
-                        $classMap = [1 => 'pending', 2 => 'accepted', 3 => 'completed', 4 => 'rejected', 5 => 'canceled'];
-                        $labelMap = [1 => 'Menunggu', 2 => 'Diterima', 3 => 'Selesai', 4 => 'Ditolak', 5 => 'Dibatalkan'];
+                        $classMap = [1 => 'pending', 2 => 'accepted', 3 => 'completed', 4 => 'rejected', 5 => 'canceled', 12 => 'warning'];
+                        $labelMap = [1 => 'Menunggu', 2 => 'Diterima', 3 => 'Selesai', 4 => 'Ditolak', 5 => 'Dibatalkan', 12 => 'Menunggu Verifikasi'];
                         $s = $p['id_status'];
                         ?>
                         <span class="status <?= $classMap[$s] ?? 'pending' ?>">
                             <?= $labelMap[$s] ?? '-' ?>
                         </span>
                         <h4>Rp <?= number_format($p['total_harga'] ?? 0, 0, ',', '.') ?></h4>
+                        <?php if (($s == 4 || $s == 5) && !empty($p['alasan'])): ?>
+                        <div class="alasan-card"><?= esc($p['alasan']) ?></div>
+                        <?php endif; ?>
+                        <?php if ($s == 12 && !empty($p['alasan'])): ?>
+                        <div class="alasan-card alasan-card-warning"><strong>Alasan:</strong><br><?= esc($p['alasan']) ?></div>
+                        <?php endif; ?>
                     </div>
                     <div class="order-action">
                         <?php if ($s == 1): ?>
                             <a href="<?= base_url('dashboard/pemesanan/terima/'.$p['id_pemesanan']) ?>" class="btn-accept">Terima</a>
                             <a href="<?= base_url('dashboard/pemesanan/tolak/'.$p['id_pemesanan']) ?>" class="btn-reject"><i class="fa-solid fa-xmark"></i> Tolak</a>
                         <?php endif; ?>
-                        <?php if ($s == 1 || $s == 2 || $s == 3): ?>
+                        <?php if ($s >= 1 && $s <= 3): ?>
                             <a href="<?= base_url('dashboard/pemesanan/batalkan/'.$p['id_pemesanan']) ?>" class="btn-cancel"><i class="fa-solid fa-ban"></i> Batalkan</a>
                         <?php endif; ?>
                     </div>
@@ -195,20 +231,26 @@
                     </div>
                     <div class="order-detail">
                         <?php
-                        $classMap = [1 => 'pending', 2 => 'accepted', 3 => 'completed', 4 => 'rejected', 5 => 'canceled'];
-                        $labelMap = [1 => 'Menunggu Disetujui', 2 => 'Diproses', 3 => 'Selesai', 4 => 'Ditolak', 5 => 'Dibatalkan'];
+                        $classMap = [1 => 'pending', 2 => 'accepted', 3 => 'completed', 4 => 'rejected', 5 => 'canceled', 12 => 'warning'];
+                        $labelMap = [1 => 'Menunggu Disetujui', 2 => 'Diproses', 3 => 'Selesai', 4 => 'Ditolak', 5 => 'Dibatalkan', 12 => 'Menunggu Verifikasi'];
                         $s = $p['id_status'];
                         ?>
                         <span class="status <?= $classMap[$s] ?? 'pending' ?>">
                             <?= $labelMap[$s] ?? '-' ?>
                         </span>
                         <h4>Rp <?= number_format($p['total_harga'] ?? 0, 0, ',', '.') ?></h4>
+                        <?php if (($s == 4 || $s == 5) && !empty($p['alasan'])): ?>
+                        <div class="alasan-card"><?= esc($p['alasan']) ?></div>
+                        <?php endif; ?>
+                        <?php if ($s == 12 && !empty($p['alasan'])): ?>
+                        <div class="alasan-card alasan-card-warning"><strong>Alasan:</strong><br><?= esc($p['alasan']) ?></div>
+                        <?php endif; ?>
                     </div>
                     <div class="order-action">
                         <?php if ($s == 2): ?>
                             <a href="<?= base_url('dashboard/bayar/'.$p['id_pemesanan']) ?>" class="btn-accept">Bayar Sekarang</a>
                         <?php endif; ?>
-                        <?php if ($s == 1 || $s == 2 || $s == 3): ?>
+                        <?php if ($s >= 1 && $s <= 3): ?>
                             <a href="<?= base_url('dashboard/pemesanan/batalkan/'.$p['id_pemesanan']) ?>" class="btn-cancel"><i class="fa-solid fa-ban"></i> Batalkan</a>
                         <?php endif; ?>
                     </div>

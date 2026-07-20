@@ -37,6 +37,7 @@
                     <?php if ($role === 'pelanggan') : ?>
                     <li><a href="<?= base_url('dashboard') ?>"><i class="fa-solid fa-house"></i> Dashboard</a></li>
                     <li><a href="<?= base_url('dashboard/photografer') ?>"><i class="fa-solid fa-camera-retro"></i> Photografer</a></li>
+                    <li><a href="<?= base_url('dashboard/chat/pelanggan-inbox') ?>"><i class="fa-solid fa-comments"></i> Chat</a></li>
                     <li><a href="<?= base_url('dashboard/proyeklelang') ?>"><i class="fa-solid fa-gavel"></i> Proyek Lelang</a></li>
                     <li><a href="<?= base_url('dashboard/pemesanan') ?>"><i class="fa-solid fa-clipboard-list"></i> Pemesanan</a></li>
                     <li><a href="<?= base_url('dashboard/pembayaran') ?>"><i class="fa-solid fa-credit-card"></i> Pembayaran</a></li>

@@ -58,7 +58,10 @@
                         <div class="card-buttons">
                             <a href="<?= base_url('dashboard/portofolio/'.$p['id_photografer']) ?>" class="btn-portfolio">
                                 View Portofolio
-                            </a> 
+                            </a>
+                            <a href="<?= base_url('dashboard/chat/'.$p['id_photografer']) ?>" class="btn-chat">
+                                <i class="fa-solid fa-comment"></i> Chat
+                            </a>
                         </div>
                     </div>
                 </div>
