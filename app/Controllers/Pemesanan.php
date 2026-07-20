@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Pemesananmodel;
 use App\Models\Pembatalanmodel;
+use App\Models\Dendamodel;
 
 class Pemesanan extends BaseController
 {
@@ -157,6 +158,7 @@ class Pemesanan extends BaseController
     {
         $model = new Pemesananmodel();
         $pembatalanModel = new Pembatalanmodel();
+        $dendaModel = new Dendamodel();
         $photograferModel = new \App\Models\PhotograferModel();
 
         $pemesanan = $model->find($id);
@@ -172,7 +174,6 @@ class Pemesanan extends BaseController
         $model->update($id, ['id_status' => 5]);
         $pembatalanModel->update($pembatalan['id_pembatalan'], ['status_verifikasi' => 'disetujui']);
 
-        // Cek denda H-3
         $tgl_acara = $pemesanan['tgl_acara'];
         $tgl_pembatalan = date('Y-m-d');
         $selisih_hari = floor((strtotime($tgl_acara) - strtotime($tgl_pembatalan)) / (60 * 60 * 24));
@@ -181,15 +182,29 @@ class Pemesanan extends BaseController
             $pihak = $pembatalan['pihak_pembatal'];
 
             if ($pihak === 'pelanggan') {
-                // DP hangus: tandai pembayaran sebagai hangus
                 $db = \Config\Database::connect();
                 $db->query("UPDATE pembayaran SET id_status = 4 WHERE id_pemesanan = ? AND id_status = 1", [$id]);
+
+                $dendaModel->save([
+                    'id_pemesanan'  => $id,
+                    'id_pembatalan' => $pembatalan['id_pembatalan'],
+                    'jenis_denda'   => 'dp_hangus',
+                    'keterangan'    => 'DP hangus karena pelanggan membatalkan pesanan H-' . $selisih_hari,
+                    'tgl_denda'     => date('Y-m-d H:i:s'),
+                ]);
             } elseif ($pihak === 'photografer') {
-                // Akun dibekukan 3 hari
                 $tgl_beku = date('Y-m-d H:i:s', strtotime('+3 days'));
                 $photograferModel->update($pemesanan['id_photografer'], [
                     'id_status' => 2,
                     'tgl_beku_hingga' => $tgl_beku
+                ]);
+
+                $dendaModel->save([
+                    'id_pemesanan'  => $id,
+                    'id_pembatalan' => $pembatalan['id_pembatalan'],
+                    'jenis_denda'   => 'akun_dibekukan',
+                    'keterangan'    => 'Akun dibekukan 3 hari karena photografer membatalkan pesanan H-' . $selisih_hari,
+                    'tgl_denda'     => date('Y-m-d H:i:s'),
                 ]);
             }
         }
