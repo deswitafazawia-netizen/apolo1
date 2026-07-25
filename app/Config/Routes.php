@@ -68,6 +68,10 @@ $routes->group('dashboard', function ($routes) {
     $routes->post('updatejenis/(:num)', 'Photography::updateJenis/$1');
     $routes->get('hapusjenis/(:num)', 'Photography::hapusJenis/$1');
     $routes->get('tabelphotografer', 'Tabelphotografer::index');
+    $routes->get('detailphotografer/(:num)', 'Tabelphotografer::detail/$1');
+    $routes->get('photografer/edit/(:num)', 'Tabelphotografer::edit/$1');
+    $routes->post('photografer/update/(:num)', 'Tabelphotografer::update/$1');
+    $routes->get('photografer/hapus/(:num)', 'Tabelphotografer::hapus/$1');
     $routes->get('tambahdatakategori', 'Tambahdatakategori::index');
     $routes->post('tambahdatakategori/simpan', 'Tambahdatakategori::simpan');
     $routes->get('tambahdatajenis', 'Tambahdatajenis::index');
@@ -87,4 +91,5 @@ $routes->group('dashboard', function ($routes) {
     $routes->get('tambahdataproyeklelang', 'Tambahdataproyeklelang::index');
     $routes->get('photography', 'Photography::index');
     $routes->get('laporan', 'Laporan::index');
+    $routes->get('laporanproyek', 'Laporan::proyek');
 });

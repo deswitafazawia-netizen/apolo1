@@ -42,6 +42,7 @@
                     <li><a href="<?= base_url('dashboard/pemesanan') ?>"><i class="fa-solid fa-clipboard-list"></i> Pemesanan</a></li>
                     <li><a href="<?= base_url('dashboard/pembayaran') ?>"><i class="fa-solid fa-credit-card"></i> Pembayaran</a></li>
                     <li><a href="<?= base_url('dashboard/rating') ?>"><i class="fa-solid fa-star"></i> Rating</a></li>
+                    <li><a href="<?= base_url('dashboard/profil') ?>"><i class="fa-solid fa-user"></i> Profil</a></li>
                     <?php endif; ?>
                     <?php if ($role === 'photografer') : ?>
                     <li><a href="<?= base_url('dashboard') ?>"><i class="fa-solid fa-house"></i> Dashboard</a></li>

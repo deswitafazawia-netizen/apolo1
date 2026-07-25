@@ -11,23 +11,18 @@
     <div class="stats-grid">
 
         <div class="stat-card">
-            <h3>1.250</h3>
+            <h3><?= $totalPelanggan; ?></h3>
             <p>Total Pelanggan</p>
         </div>
 
         <div class="stat-card">
-            <h3>120</h3>
+            <h3><?= $totalPhotografer; ?></h3>
             <p>Total Photografer</p>
         </div>
 
         <div class="stat-card">
-            <h3>850</h3>
+            <h3><?= $total ?></h3>
             <p>Total Booking</p>
-        </div>
-
-        <div class="stat-card">
-            <h3>Rp125 Jt</h3>
-            <p>Total Pendapatan</p>
         </div>
 
     </div>
@@ -37,12 +32,18 @@
 
         <input type="date">
 
-        <select>
-            <option>Semua Laporan</option>
-            <option>Pemesanan</option>
-            <option>Pembayaran</option>
-            <option>Proyek Lelang</option>
+        <select onchange="if(this.value) window.location=this.value;">
+
+            <option value="<?= base_url('dashboard/laporan') ?>" selected>
+                Pemesanan Jasa
+            </option>
+
+            <option value="<?= base_url('dashboard/laporanproyek') ?>">
+                Proyek Lelang
+            </option>
+
         </select>
+
 
         <button>Tampilkan</button>
         <button>Export PDF</button>
@@ -63,17 +64,57 @@
                 </tr>
             </thead>
 
-            <tbody>
-                <tr>
-                    <td>BK001</td>
-                    <td>10/06/2026</td>
-                    <td>Andi</td>
-                    <td>Ichall Photograph</td>
-                    <td>Wedding</td>
-                    <td>Rp3.500.000</td>
-                    <td>Selesai</td>
-                </tr>
-            </tbody>
+        <tbody>
+
+        <?php if(!empty($laporan)): ?>
+
+            <?php foreach($laporan as $l): ?>
+
+            <tr>
+
+                <td>
+                    PMS<?= str_pad($l['id_pemesanan'],3,'0',STR_PAD_LEFT); ?>
+                </td>
+
+                <td>
+                    <?= date('d/m/Y', strtotime($l['tgl_pemesanan'])) ?>
+                </td>
+
+                <td>
+                    <?= esc($l['nama_pelanggan']) ?>
+                </td>
+
+                <td>
+                    <?= esc($l['nama_photografer']) ?>
+                </td>
+
+                <td>
+                    <?= esc($l['nama_jenis']) ?>
+                </td>
+
+                <td>
+                    Rp <?= number_format($l['total_harga'],0,',','.') ?>
+                </td>
+
+                <td>
+                    <?= esc($l['nama_status']) ?>
+                </td>
+
+            </tr>
+
+            <?php endforeach; ?>
+
+        <?php else: ?>
+
+        <tr>
+            <td colspan="7" style="text-align:center;">
+                Tidak ada data laporan.
+            </td>
+        </tr>
+
+        <?php endif; ?>
+
+        </tbody>
 
         </table>
 

@@ -172,21 +172,6 @@
 
 <?php elseif ($role === 'photografer'): ?>
 
-    <div class="auction-header">
-        <div>
-            <span class="section-label">OPEN PROJECTS</span>
-            <h1>Proyek Lelang</h1>
-        </div>
-        <div class="sort-box">
-            <span>SORT BY :</span>
-            <select>
-                <option>Latest Project</option>
-                <option>Highest Budget</option>
-                <option>Nearest Event</option>
-            </select>
-        </div>
-    </div>
-
     <div class="auction-grid">
         <?php if (!empty($proyek)): ?>
             <?php foreach ($proyek as $p): ?>

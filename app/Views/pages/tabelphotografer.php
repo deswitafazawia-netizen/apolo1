@@ -95,14 +95,25 @@
 
                     </td>
 
-                    <td>
+                <td class="action-buttons">
 
-                        <a href="<?= base_url('dashboard/detailphotografer/'.$p['id_photografer']); ?>"
-                        class="btn-detail">
-                            Detail
-                        </a>
+                    <a href="<?= base_url('dashboard/detailphotografer/'.$p['id_photografer']) ?>"
+                    class="btn-detail">
+                        <i class="fa-solid fa-eye"></i> Detail
+                    </a>
 
-                    </td>
+                    <a href="<?= base_url('dashboard/photografer/edit/'.$p['id_photografer']) ?>"
+                    class="btn-edit">
+                        <i class="fa-solid fa-pen"></i> Edit
+                    </a>
+
+                    <a href="<?= base_url('dashboard/photografer/hapus/'.$p['id_photografer']) ?>"
+                    class="btn-delete"
+                    onclick="return confirm('Yakin ingin menghapus data ini?')">
+                        <i class="fa-solid fa-trash"></i> Hapus
+                    </a>
+
+                </td>
 
                 </tr>
 

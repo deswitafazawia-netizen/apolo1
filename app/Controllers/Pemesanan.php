@@ -227,7 +227,6 @@ class Pemesanan extends BaseController
             return redirect()->to(base_url('dashboard/pemesanan'))->with('error', 'Tidak ada permohonan pembatalan yang menunggu.');
         }
 
-        // Kembalikan ke status sebelumnya
         $model->update($id, ['id_status' => $pembatalan['status_sebelumnya']]);
         $pembatalanModel->update($pembatalan['id_pembatalan'], ['status_verifikasi' => 'ditolak']);
 
