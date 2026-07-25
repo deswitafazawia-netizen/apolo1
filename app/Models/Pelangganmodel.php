@@ -14,6 +14,7 @@ class PelangganModel extends Model
         'email',
         'no_hp',
         'password',
+        'foto',
         'id_status'
     ];
 

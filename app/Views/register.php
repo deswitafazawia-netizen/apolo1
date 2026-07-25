@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Apolo</title>
 </head>
 <body>
     <div class="login-container">
@@ -35,7 +35,7 @@
 
     <div class="login-right">
 
-        <div class="login-card">
+        <div class="login-card register-card">
 
             <img src="<?= base_url('assets/logo.png') ?>" alt="">
 
@@ -69,14 +69,18 @@
 
                 <div class="input-group">
                     <label>Role</label>
-                    <select name="role" id="">
-                        <option value="pelanggan">Pelanggan</option>
-                        <option value="photografer">Photografer</option>
-                    </select>
+                    <div class="select-wrapper">
+                        <select name="role" id="">
+                            <option value="pelanggan">Pelanggan</option>
+                            <option value="photografer">Photografer</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
                 </div>
 
                 <button type="submit">
-                    Register
+                    <i class="fa-solid fa-user-plus"></i>
+                    Daftar
                 </button>
 
             </form>

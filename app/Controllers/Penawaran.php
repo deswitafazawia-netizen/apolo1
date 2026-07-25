@@ -39,7 +39,7 @@ class Penawaran extends BaseController
 
         session()->setFlashdata('success', 'Penawaran berhasil dikirim!');
 
-        return redirect()->to(base_url('dashboard/proyeklelangphotografer'));
+        return redirect()->to(base_url('dashboard/proyeklelang'));
     }
 
     public function penawaranPelanggan($id_proyek)
@@ -102,7 +102,7 @@ class Penawaran extends BaseController
             dd($pemesananModel->errors());
         }
 
-            return redirect()->to(base_url('dashboard/proyeklelangpelanggan'))
+            return redirect()->to(base_url('dashboard/proyeklelang'))
                             ->with('success','Photografer berhasil dipilih.');
         }
 }

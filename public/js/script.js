@@ -1,16 +1,22 @@
-const btn = document.querySelectorAll('[data-toggle]');
-const menu = document.querySelectorAll('[data-menu]');
+const navToggle = document.getElementById('navToggle');
+const navbarMenu = document.getElementById('navbarMenu');
 
-btn.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        const target = btn.getAttribute('data-toggle');
+if (navToggle && navbarMenu) {
+    navToggle.addEventListener('click', () => {
+        navbarMenu.classList.toggle('show');
+    });
 
-        menu.forEach(show => {
-            if (show.getAttribute('data-menu') === target) {
-                show.classList.toggle('show');
-            } else {
-                show.classList.remove('show')
-            }
-        })
-    })
-})
+    document.addEventListener('click', (e) => {
+        if (!navToggle.contains(e.target) && !navbarMenu.contains(e.target)) {
+            navbarMenu.classList.remove('show');
+        }
+    });
+}
+
+// Highlight active link
+const currentPath = window.location.pathname;
+document.querySelectorAll('.navbar-menu a').forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active');
+    }
+});

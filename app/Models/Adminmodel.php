@@ -11,7 +11,8 @@ class AdminModel extends Model
 
     protected $allowedFields = [
         'username',
-        'password'
+        'password',
+        'foto'
     ];
 
     protected $useTimestamps = false;

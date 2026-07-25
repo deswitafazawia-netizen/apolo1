@@ -50,7 +50,7 @@ class Tambahdataproyeklelang extends BaseController
             );
 
             return redirect()->to(
-                base_url('dashboard/proyeklelangadmin')
+                base_url('dashboard/proyeklelang')
             );
         }
 }

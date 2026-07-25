@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\AdminModel;
@@ -22,16 +23,16 @@ class Login extends BaseController
             ->where('username', $username)
             ->first();
 
-            if ($admin && $password == $admin['password']) {
-                session()->set([
-                    'id_admin' => $admin['id_admin'],
-                    'username' => $admin['username'],
-                    'role' => 'admin',
-                    'login' => true
-                ]);
+        if ($admin && $password == $admin['password']) {
+            session()->set([
+                'id_admin' => $admin['id_admin'],
+                'username' => $admin['username'],
+                'role' => 'admin',
+                'login' => true
+            ]);
 
-                return redirect()->to(base_url('dashboard'));
-            }
+            return redirect()->to(base_url('dashboard'));
+        }
 
         $pelangganM = new PelangganModel();
         $Pelanggan = $pelangganM
@@ -43,6 +44,7 @@ class Login extends BaseController
                 'id_pelanggan' => $Pelanggan['id_pelanggan'],
                 'username' => $Pelanggan['nama_pelanggan'],
                 'role' => 'pelanggan',
+                'foto' => $Pelanggan['foto'],
                 'login' => true
             ]);
 
@@ -56,24 +58,40 @@ class Login extends BaseController
 
         if ($Photografer && password_verify($password, $Photografer['password'])) {
 
+            // Cek apakah akun dibekukan
+            if (!empty($Photografer['tgl_beku_hingga']) && strtotime($Photografer['tgl_beku_hingga']) > time()) {
+                $sisa = ceil((strtotime($Photografer['tgl_beku_hingga']) - time()) / (60 * 60 * 24));
+                return redirect()->to('/login')
+                     ->with('error', "Akun Anda dibekukan selama {$sisa} hari karena pembatalan mendadak.");
+            }
+
+            // Jika masa beku sudah lewat, aktifkan kembali
+            if (!empty($Photografer['tgl_beku_hingga']) && strtotime($Photografer['tgl_beku_hingga']) <= time()) {
+                $photograferM->update($Photografer['id_photografer'], [
+                    'id_status' => 1,
+                    'tgl_beku_hingga' => null
+                ]);
+            }
+
             session()->set([
                 'id_photografer' => $Photografer['id_photografer'],
                 'username' => $Photografer['nama_photografer'],
                 'role' => 'photografer',
+                'foto' => $Photografer['foto'],
                 'login' => true
-                
+
             ]);
 
             return redirect()->to(base_url('dashboard'));
         }
-            return redirect()->to('/login')
-                 ->with('error', 'Username atau Password salah');
-                 
+        return redirect()->to('/login')
+             ->with('error', 'Username atau Password salah');
+
     }
 
-            public function logout()
-            {
-                session()->destroy();
-                return redirect()->to('/login');
-            }
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/login');
+    }
 }

@@ -15,16 +15,22 @@ class PhotograferModel extends Model
         'no_hp',
         'alamat',
         'password',
-        'id_status'
+        'foto',
+        'id_status',
+        'tgl_beku_hingga'
     ];
 
     protected $useTimestamps = false;
     protected $returnType = 'array';
 
-    public function GetPortofolio(){
-        return $this->select('photografer.*, portofolio.foto, portofolio.deskripsi, rating.nilai_rating')
-        ->join('portofolio', 'portofolio.id_photografer = photografer.id_photografer')
-        ->join('rating','rating.id_photografer = photografer.id_photografer')
-        ->findAll();
+    public function GetPhotografer()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("
+            SELECT photografer.*, 
+                   COALESCE((SELECT AVG(nilai_rating) FROM rating WHERE rating.id_photografer = photografer.id_photografer), 0) as nilai_rating
+            FROM photografer
+        ");
+        return $query->getResultArray();
     }
 }

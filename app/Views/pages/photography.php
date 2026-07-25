@@ -1,46 +1,36 @@
 <?= $this->extend('dashboard') ?>
-
 <?= $this->section('content') ?>
     <div class="page-header">
         <h2>Manajemen Photography</h2>
         <p>Kelola kategori photography dan jenis photography yang tersedia pada sistem.</p>
     </div>
     <div class="stats-container">
-
         <div class="stats-card">
             <h3><?= $totalKategori ?></h3>
             <p>Kategori Photography</p>
         </div>
-
         <div class="stats-card">
             <h3><?= $totalJenis ?></h3>
             <p>Jenis Photography</p>
         </div>
-
         <div class="stats-card">
             <h3><?= $totalPhotografer ?></h3>
             <p>Photografer Aktif</p>
         </div>
-
         <div class="stats-card">
             <h3><?= $layananDigunakan ?></h3>
             <p>Layanan Digunakan</p>
         </div>
-
     </div>
     <div class="table-container">
-
         <div class="table-header">
             <h3>Data Kategori Photography</h3>
-
             <a href="<?= base_url('dashboard/tambahdatakategori') ?>" class="btn-add">
                 <i class="fa-solid fa-plus"></i>
                 Tambah Data Kategori
             </a>
         </div>
-
         <table class="user-table">
-
             <thead>
                 <tr>
                     <th>ID</th>
@@ -49,15 +39,11 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
-
         <tbody>
-
-        <?php foreach($kategori as $k): ?>
-
+        <?php foreach ($kategori as $k): ?>
         <tr>
-
             <td>
-                KTR<?= str_pad($k['id_kategori'],3,'0',STR_PAD_LEFT); ?>
+                KTR<?= str_pad($k['id_kategori'], 3, '0', STR_PAD_LEFT); ?>
             </td>
 
             <td><?= esc($k['nama_kategori']); ?></td>
@@ -116,12 +102,12 @@
 
             <tbody>
 
-            <?php foreach($jenis as $j): ?>
+            <?php foreach ($jenis as $j): ?>
 
             <tr>
 
                 <td>
-                    JNS<?= str_pad($j['id_jenis_photography'],3,'0',STR_PAD_LEFT); ?>
+                    JNS<?= str_pad($j['id_jenis_photography'], 3, '0', STR_PAD_LEFT); ?>
                 </td>
 
                 <td><?= esc($j['nama_kategori']); ?></td>
@@ -129,7 +115,7 @@
                 <td><?= esc($j['nama_jenis']); ?></td>
 
                 <td>
-                    Rp <?= number_format($j['harga'],0,',','.'); ?>
+                    Rp <?= number_format($j['harga'], 0, ',', '.'); ?>
                 </td>
 
                 <td><?= esc($j['deskripsi']); ?></td>
