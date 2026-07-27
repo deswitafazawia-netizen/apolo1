@@ -22,8 +22,11 @@
 
                     <textarea name="deskripsi" rows="6"><?= esc($portofolio['deskripsi']) ?></textarea>
                 </div>
-        <button class="btn-save">
-            Simpan Perubahan
-        </button>
+        <div class="btn-form-group">
+            <button class="btn-save">
+                Simpan Perubahan
+            </button>
+            <a href="<?= base_url('dashboard/profil') ?>" class="btn-cancel"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+        </div>
         </form>
 <?= $this->endSection() ?>

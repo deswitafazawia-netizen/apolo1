@@ -120,6 +120,7 @@
                         <th>Jenis</th>
                         <th>Tanggal Acara</th>
                         <th>Lokasi</th>
+                        <th>Penanggung Jawab</th>
                         <th>Total</th>
                         <th>Status</th>
                         <th>Aksi</th>
@@ -145,6 +146,7 @@
                             <td><?= esc($p['nama_jenis'] ?? '-') ?></td>
                             <td><?= $p['tgl_acara'] ? date('d/m/Y', strtotime($p['tgl_acara'])) : '-' ?></td>
                             <td><?= esc($p['lokasi'] ?? '-') ?></td>
+                            <td><?= esc($p['no_penanggung_jawab'] ?? '-') ?></td>
                             <td>Rp <?= number_format($p['total_harga'] ?? 0, 0, ',', '.') ?></td>
                             <td>
                                 <span class="<?= $label[$s]['class'] ?? 'badge-pending' ?>">
@@ -183,6 +185,7 @@
                             <a href="https://www.google.com/maps/search/<?= urlencode($p['lokasi']) ?>" target="_blank" class="btn-map-link"><i class="fa-solid fa-map-location-dot"></i></a>
                             <?php endif; ?>
                         </p>
+                        <p><strong>Penanggung Jawab :</strong> <?= esc($p['no_penanggung_jawab'] ?? '-') ?></p>
                     </div>
                     <div class="order-detail">
                         <?php
@@ -228,6 +231,7 @@
                             <a href="https://www.google.com/maps/search/<?= urlencode($p['lokasi']) ?>" target="_blank" class="btn-map-link"><i class="fa-solid fa-map-location-dot"></i></a>
                             <?php endif; ?>
                         </p>
+                        <p><strong>Penanggung Jawab :</strong> <?= esc($p['no_penanggung_jawab'] ?? '-') ?></p>
                     </div>
                     <div class="order-detail">
                         <?php

@@ -30,6 +30,7 @@ class Booking extends BaseController
             'tgl_pemesanan'        => date('Y-m-d H:i:s'),
             'tgl_acara'            => $this->request->getPost('tgl_acara'),
             'lokasi'               => $this->request->getPost('lokasi'),
+            'no_penanggung_jawab'  => $this->request->getPost('no_penanggung_jawab'),
             'total_harga'          => $this->request->getPost('total_harga'),
             'id_status'            => 1
         ]);

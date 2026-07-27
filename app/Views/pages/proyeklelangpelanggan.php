@@ -53,10 +53,12 @@
             </div>
         </div>
 
-        <button type="submit" class="publish-btn">
-            <i class="fa-solid fa-paper-plane"></i>
-            Publish Project
-        </button>
+        <div class="btn-form-group">
+            <button type="submit" class="publish-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+                Publish Project
+            </button>
+        </div>
 
     </form>
 </div>

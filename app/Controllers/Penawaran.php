@@ -9,8 +9,10 @@ class Penawaran extends BaseController
         public function index($id_proyek)
         {
             $model = new \App\Models\Penawaranlelangmodel();
+            $proyekModel = new \App\Models\ProyeklelangpelangganModel();
 
             $data['id_proyek'] = $id_proyek;
+            $data['proyek'] = $proyekModel->find($id_proyek);
 
             $data['penawaran'] = $model
                 ->select('penawaran_lelang.*, photografer.nama_photografer')

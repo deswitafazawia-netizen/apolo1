@@ -23,8 +23,7 @@
     </div>
 
     <form class="report-filter" method="GET" action="<?= base_url('dashboard/laporan') ?>">
-        <input type="date" name="tanggal_awal" value="<?= $tanggal_awal ?>" placeholder="Tanggal Awal">
-        <input type="date" name="tanggal_akhir" value="<?= $tanggal_akhir ?>" placeholder="Tanggal Akhir">
+        <input type="month" name="bulan" value="<?= $bulan ?>" placeholder="Filter Bulan">
         <select name="kategori">
             <option value="semua" <?= $kategori === 'semua' ? 'selected' : '' ?>>Semua Laporan</option>
             <option value="pemesanan" <?= $kategori === 'pemesanan' ? 'selected' : '' ?>>Pemesanan</option>

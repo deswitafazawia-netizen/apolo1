@@ -16,6 +16,7 @@ class Pemesananmodel extends Model
         'tgl_pemesanan',
         'tgl_acara',
         'lokasi',
+        'no_penanggung_jawab',
         'total_harga',
         'id_status'
     ];

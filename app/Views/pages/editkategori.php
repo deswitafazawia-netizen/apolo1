@@ -22,9 +22,12 @@
         <textarea name="deskripsi"><?= esc($kategori['deskripsi']) ?></textarea>
     </div>
 
-    <button type="submit" class="btn-save">
-        Simpan Perubahan
-    </button>
+    <div class="btn-form-group">
+        <button type="submit" class="btn-save">
+            Simpan Perubahan
+        </button>
+        <a href="<?= base_url('dashboard/photography') ?>" class="btn-cancel"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+    </div>
 
 </form>
 

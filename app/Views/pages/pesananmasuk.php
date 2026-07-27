@@ -45,6 +45,7 @@
                 <p><strong>Pelanggan :</strong> <?= esc($p['nama_pelanggan']) ?></p>
                 <p><strong>Tanggal :</strong> <?= date('d F Y', strtotime($p['tgl_acara'])) ?></p>
                 <p><strong>Lokasi :</strong> <?= esc($p['lokasi']) ?></p>
+                <p><strong>Penanggung Jawab :</strong> <?= esc($p['no_penanggung_jawab'] ?? '-') ?></p>
 
             </div>
 

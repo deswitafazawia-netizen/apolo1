@@ -83,9 +83,12 @@
                         </div>
                     <?php endif; ?>
 
-                    <button class="btn-save">
-                        <i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan
-                    </button>
+                    <div class="btn-form-group">
+                        <button class="btn-save">
+                            <i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan
+                        </button>
+                        <a href="<?= base_url('dashboard') ?>" class="btn-cancel"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+                    </div>
                 </div>
             </div>
         </form>

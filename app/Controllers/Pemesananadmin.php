@@ -19,7 +19,7 @@ class Pemesananadmin extends BaseController
             ')
             ->join('pelanggan', 'pelanggan.id_pelanggan = pemesanan.id_pelanggan')
             ->join('photografer', 'photografer.id_photografer = pemesanan.id_photografer')
-            ->join('jenis_photography', 'jenis_photography.id_jenis_photography = pemesanan.id_jenis_photography')
+            ->join('jenis_photography', 'jenis_photography.id_jenis_photography = pemesanan.id_jenis_photography', 'left')
             ->findAll();
 
         $data['total'] = $model->countAllResults(false);

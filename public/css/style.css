@@ -2674,21 +2674,23 @@ button:hover {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 10px 18px;
+    padding: 12px 25px;
     border-radius: 10px;
-    background: linear-gradient(135deg, #6b7280, #4b5563);
-    color: #fff;
+    background: transparent;
+    color: #999;
     text-decoration: none;
     font-weight: 600;
-    font-size: 13px;
-    border: none;
+    font-size: 14px;
+    border: 1px solid #333;
     cursor: pointer;
     transition: all .3s ease;
 }
 
 .btn-cancel:hover {
-    background: linear-gradient(135deg, #4b5563, #374151);
-    transform: translateY(-2px);
+    background: #222;
+    color: #fff;
+    border-color: #555;
+    transform: translateY(-1px);
 }
 
 .order-info h3 {
@@ -3145,8 +3147,8 @@ button:hover {
 }
 
 .btn-cancel {
-    background: #333;
-    color: #fff;
+    background: transparent;
+    color: #999;
     padding: 12px 25px;
     border-radius: 10px;
     text-decoration: none;
@@ -3156,10 +3158,49 @@ button:hover {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    border: 1px solid #333;
 }
 
 .btn-cancel:hover {
-    background: #444;
+    background: #222;
+    color: #fff;
+    border-color: #555;
+    transform: translateY(-1px);
+}
+
+.btn-form-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-form-group .btn-save,
+.btn-form-group .btn-book-now,
+.btn-form-group .btn-pay,
+.btn-form-group .btn-submit-offer,
+.btn-form-group .publish-btn {
+    margin-top: 0;
+}
+
+@media (max-width: 480px) {
+    .btn-cancel {
+        padding: 10px 18px;
+        font-size: 13px;
+    }
+    .btn-form-group {
+        flex-direction: column;
+    }
+    .btn-form-group .btn-save,
+    .btn-form-group .btn-book-now,
+    .btn-form-group .btn-pay,
+    .btn-form-group .btn-submit-offer,
+    .btn-form-group .publish-btn,
+    .btn-form-group .btn-cancel {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 .table-container {

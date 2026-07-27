@@ -13,7 +13,7 @@ class Pesananmasuk extends BaseController
         $data['pemesanan'] = $model
             ->select('pemesanan.*, pelanggan.nama_pelanggan, jenis_photography.nama_jenis')
             ->join('pelanggan', 'pelanggan.id_pelanggan = pemesanan.id_pelanggan')
-            ->join('jenis_photography', 'jenis_photography.id_jenis_photography = pemesanan.id_jenis_photography')
+            ->join('jenis_photography', 'jenis_photography.id_jenis_photography = pemesanan.id_jenis_photography', 'left')
             ->where('pemesanan.id_photografer', $id_fotografer)
             ->findAll();
 

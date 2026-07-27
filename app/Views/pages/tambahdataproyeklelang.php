@@ -76,10 +76,13 @@
                 </select>
 
             </div>
-            <button type="submit" class="btn-save">
-                <i class="fa-solid fa-save"></i>
-                Simpan Data
-            </button>
+            <div class="btn-form-group">
+                <button type="submit" class="btn-save">
+                    <i class="fa-solid fa-save"></i>
+                    Simpan Data
+                </button>
+                <a href="<?= base_url('dashboard/proyeklelang') ?>" class="btn-cancel"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+            </div>
         </div>
 
 </div>

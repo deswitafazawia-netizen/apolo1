@@ -29,7 +29,7 @@
                 </span>
 
                 <h4>
-                    Rp <?= number_format($p['total_harga'],0,',','.') ?>
+                    Rp <?= number_format($p['total_harga'], 0, ',', '.') ?>
                 </h4>
 
             </div>

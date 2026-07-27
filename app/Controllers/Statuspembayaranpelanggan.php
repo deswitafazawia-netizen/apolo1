@@ -16,7 +16,7 @@ class Statuspembayaranpelanggan extends BaseController
                     jenis_photography.nama_jenis
                 ')
                 ->join('photografer','photografer.id_photografer=pemesanan.id_photografer')
-                ->join('jenis_photography','jenis_photography.id_jenis_photography=pemesanan.id_jenis_photography')
+                ->join('jenis_photography','jenis_photography.id_jenis_photography=pemesanan.id_jenis_photography','left')
                 ->where('pemesanan.id_pelanggan',$id_pelanggan)
                 ->where('pemesanan.id_status',2) 
                 ->findAll();

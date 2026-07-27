@@ -39,7 +39,8 @@
         <form action="<?= base_url('dashboard/bayar/simpan') ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field() ?>
             <input type="hidden" name="id_pemesanan" value="<?= $pemesanan['id_pemesanan'] ?>">
-            <input type="hidden" name="jumlah_bayar" value="<?= (float)($pemesanan['total_harga'] ?? 0) ?>">
+            <input type="hidden" name="total_harga" value="<?= (float)($pemesanan['total_harga'] ?? 0) ?>">
+            <input type="hidden" name="jumlah_bayar" id="jumlahBayar" value="">
 
             <div class="form-group">
                 <label for="jenisPembayaran">Jenis Pembayaran</label>
@@ -49,6 +50,14 @@
                         <option value="DP">Bayar DP</option>
                         <option value="Lunas">Bayar Lunas</option>
                     </select>
+                </div>
+            </div>
+
+            <div class="form-group" id="infoBayar" style="display:none;">
+                <label>Nominal Pembayaran</label>
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p id="textBayar"></p>
                 </div>
             </div>
 
@@ -90,10 +99,13 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn-pay">
-                <i class="fas fa-paper-plane"></i>
-                Kirim Pembayaran
-            </button>
+            <div class="btn-form-group">
+                <button type="submit" class="btn-pay">
+                    <i class="fas fa-paper-plane"></i>
+                    Kirim Pembayaran
+                </button>
+                <a href="<?= base_url('dashboard/pemesanan') ?>" class="btn-cancel"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+            </div>
         </form>
     </div>
 </div>
@@ -104,6 +116,26 @@ function metodeBayar(){
     document.getElementById('transferArea').style.display = metode === 'Transfer' ? 'block' : 'none';
     document.getElementById('tunaiArea').style.display = metode === 'Tunai' ? 'block' : 'none';
 }
+
+document.getElementById('jenisPembayaran').addEventListener('change', function(){
+    let total = parseFloat(document.querySelector('input[name="total_harga"]').value) || 0;
+    let infoBayar = document.getElementById('infoBayar');
+    let textBayar = document.getElementById('textBayar');
+    let jumlahBayar = document.getElementById('jumlahBayar');
+
+    if (this.value === 'DP') {
+        jumlahBayar.value = 50000;
+        textBayar.innerHTML = 'DP sebesar <strong>Rp 50.000</strong> (Rp ' + total.toLocaleString('id-ID') + ' × 50%)';
+        infoBayar.style.display = 'block';
+    } else if (this.value === 'Lunas') {
+        jumlahBayar.value = total;
+        textBayar.innerHTML = 'Pembayaran lunas sebesar <strong>Rp ' + total.toLocaleString('id-ID') + '</strong>';
+        infoBayar.style.display = 'block';
+    } else {
+        infoBayar.style.display = 'none';
+        jumlahBayar.value = '';
+    }
+});
 </script>
 
 <?= $this->endSection() ?>

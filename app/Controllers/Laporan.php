@@ -12,8 +12,7 @@ class Laporan extends BaseController
         $pemesananModel = new Pemesananmodel();
         $proyekModel = new Proyeklelangpelangganmodel();
 
-        $tanggal_awal = $this->request->getGet('tanggal_awal');
-        $tanggal_akhir = $this->request->getGet('tanggal_akhir');
+        $bulan = $this->request->getGet('bulan');
         $kategori = $this->request->getGet('kategori') ?? 'semua';
 
         $builderPemesanan = $pemesananModel
@@ -29,11 +28,8 @@ class Laporan extends BaseController
             ->join('jenis_photography', 'jenis_photography.id_jenis_photography = pemesanan.id_jenis_photography', 'left')
             ->join('status', 'status.id_status = pemesanan.id_status', 'left');
 
-        if ($tanggal_awal) {
-            $builderPemesanan->where('pemesanan.tgl_pemesanan >=', $tanggal_awal);
-        }
-        if ($tanggal_akhir) {
-            $builderPemesanan->where('pemesanan.tgl_pemesanan <=', $tanggal_akhir . ' 23:59:59');
+        if ($bulan) {
+            $builderPemesanan->where('DATE_FORMAT(pemesanan.tgl_pemesanan, "%Y-%m")', $bulan);
         }
 
         $dataPemesanan = $builderPemesanan->findAll();
@@ -47,11 +43,8 @@ class Laporan extends BaseController
             ->join('pelanggan', 'pelanggan.id_pelanggan = proyek_lelang.id_pelanggan', 'left')
             ->join('status', 'status.id_status = proyek_lelang.id_status', 'left');
 
-        if ($tanggal_awal) {
-            $builderProyek->where('proyek_lelang.tgl_dibuat >=', $tanggal_awal);
-        }
-        if ($tanggal_akhir) {
-            $builderProyek->where('proyek_lelang.tgl_dibuat <=', $tanggal_akhir . ' 23:59:59');
+        if ($bulan) {
+            $builderProyek->where('DATE_FORMAT(proyek_lelang.tgl_dibuat, "%Y-%m")', $bulan);
         }
 
         $dataProyek = $builderProyek->findAll();
@@ -88,8 +81,7 @@ class Laporan extends BaseController
             'proyekAktif'         => $proyekAktif,
             'proyekSelesai'       => $proyekSelesai,
             'kategori'            => $kategori,
-            'tanggal_awal'        => $tanggal_awal,
-            'tanggal_akhir'       => $tanggal_akhir,
+            'bulan'               => $bulan,
         ];
 
         return view('pages/laporan', $data);
