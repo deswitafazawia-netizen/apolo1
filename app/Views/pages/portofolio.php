@@ -48,7 +48,7 @@ foreach ($portofolio as $j) {
             <h3><?= esc($j['nama_jenis']) ?></h3>
             <p><?= esc($j['deskripsi']) ?></p>
             <h4>
-                Rp <?= number_format($j['harga'], 0, ',', '.') ?>
+                Rp <?= number_format($j['harga'], 3, ',', '.') ?>
             </h4>
             <a href="<?= base_url('dashboard/booking/'.$photografer['id_photografer'].'/'.$j['id_jenis_photography']) ?>"
             class="btn-booking">
